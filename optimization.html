@@ -16,205 +16,101 @@
 		<!-- Main -->
 			<div id="main">
 
-				<header class="major container medium">
-					<h2>I'm an advanced student of Computer Engineering at Universidad Católica del Uruguay. In this Portfolio I'm going to publish my Machine Learning experience.</h2>
+				<div class="box container">
+					<header> 
+						<h2>Optimization</h2>
+					</header>
+
+					<section>
+						<header>
+							<h3 style="text-align: left">Introduction</h3>
+						</header>
+						<p style="text-align: justify">
+							To optimize implies to maximize or minimize some kind of outup, depending on the problem we are facing. In programming, it is usual to use
+							algorithms that minimize the execution time. A more efficient algorithm will do the same job in less time. In Machine Learning context, we
+							want to minimize what we call the cost function. In Linear Regression, the cost function is just the cuadratic error of the model.
+						</p>
+						<header>
+							<h3 style="text-align: left">Gradient Descent</h3>
+						</header>
+						<p style="text-align: justify">
+							The Gradient Descent algorithm makes use of some mathematical properties of functions to minimize them. The gradient operator applied to a
+							scalar function gives us information about its direction of greatest growth. Given a starting point, we can periodicly move in the coordinate
+							space contrary to that direction until, with some tolerance, we find a minimum value.
+						</p>
+						<p style="text-align: justify">
+							Some problems arise from this approach. It can happen that the minimum we found its far from what we are looking for. Relative minimums are
+							also minimums and we need a way to avoid them. Consequently, the use of a new parameter is proposed. This parameter regulates the step length and
+							must be a real, positive value. With a large enough step parameter, relative minimums are easier to dodge, but a convergence problem arises. Big
+							steps prevents the algorithm to found a suitable set of candidate coordinates, failing its porpouse. Another problem are saddle points, where the
+							function has null gradient but its not a minimum nor maximum. Having the step parameter well defined, the only thing to worry about now is the starting
+							point. Choosing a random sart will make it difficult to converge in a saddle point.
+						</p>
+						<p style="text-align: justify">
+							In conclusion, the starting point and value of the step parameter are crucial for the correct functioning of our algorithm, but how can we apply it?
+							To calculate the next values of the coordinates we need a starting point (as mentioned before), the value of the step parameter and the gradient
+							of the function. Having this, the new values will be computed as the actual values minus the step parameter times the gradient evaluated in the actual
+							coordinates. The problem with this implementation cames with big datasets, because we first compute all the next values and then apply the transformation.
+						</p>
+						<header>
+							<h3 style="text-align: left">Other variants</h3>
+						</header>
+						<p style="text-align: justify">
+							Different implementations of this method were developed through the years. Before I discussed about an implementation with a fixed value for the
+							step parameter. Some algorithms use a dinamic step parameter, calculating its value for each iteration, so convergence is achieved faster and better.
+						</p>
+						<p style="text-align: justify">
+							Another change is the Stochastic Gradient Descent. In this case, the transformation of coordinates is not applied to all at once, but to one random
+							one at a time. This is an advantage to the first case when treating big datasets.	
+						</p>
+
+						<!-- Phasellus nisl nisl, varius id <sup>porttitor sed pellentesque</sup> ac orci. Pellentesque
+						habitant <strong>strong</strong> tristique <b>bold</b> et netus <i>italic</i> malesuada <em>emphasized</em> ac turpis egestas. Morbi
+						leo suscipit ut. Praesent <sub>id turpis vitae</sub> turpis pretium ultricies. Vestibulum sit
+						amet risus elit.
+						</p>
+						-->
+					</section>
+					<ul class="icons">
+						<li><a href="index.html" class="fas fa-arrow-left"></a></li>
+					</ul>
 					<!--
 					<p>Tellus erat mauris ipsum fermentum<br />
 					etiam vivamus nunc nibh morbi.</p>
 					-->
-				</header>
-
-				<div class="box alt container">
-					<section class="feature left">
-						<a href="#" class="image icon solid fa-brain"><img src="images/pic01.jpg" alt="" /></a>
-						<div class="content">
-							<h3>First steps: Data preprocessing</h3>
-							<p>Raw data can be a mess. Our first job must be to massage the dataset to a friendly state where we can apply our models. In this section I'll explore why and how.</p>
-						</div>
-					</section>
-					<section class="feature right">
-						<a href="#" class="image icon solid fa-mobile-alt"><img src="images/pic03.jpg" alt="" /></a>
-						<div class="content">
-							<h3>Optimization</h3>
-							<p>Performance is key when using large datasets. If we could get information of optimal values, we will get better results and in less time.</p>
-						</div>
-					</section>
-					<section class="feature left">
-						<a href="#" class="image icon solid fa-code"><img src="images/pic02.jpg" alt="" /></a>
-						<div class="content">
-							<h3>Linear Algorithms</h3>
-							<p>Some algorithms assume linear relations between the data inputs and outputs. These algorithms are called Linear Algorithms. I will talk about some Linear Algorithms in this section.</p>
-						</div>
-					</section>
-					<section class="feature right">
-						<a href="#" class="image icon solid fa-code"><img src="images/pic02.jpg" alt="" /></a>
-						<div class="content">
-							<h3>The Second Thing</h3>
-							<p>Vitae natoque dictum etiam semper magnis enim feugiat amet curabitur tempor orci penatibus. Tellus erat mauris ipsum fermentum etiam vivamus eget. Nunc nibh morbi quis fusce lacus.</p>
-						</div>
-					</section>
-					<section class="feature left">
-						<a href="#" class="image icon solid fa-mobile-alt"><img src="images/pic03.jpg" alt="" /></a>
-						<div class="content">
-							<h3>The Third Thing</h3>
-							<p>Vitae natoque dictum etiam semper magnis enim feugiat amet curabitur tempor orci penatibus. Tellus erat mauris ipsum fermentum etiam vivamus eget. Nunc nibh morbi quis fusce lacus.</p>
-						</div>
-					</section>
 				</div>
-
-				<!--
-				<div class="box container">
-					<header>
-						<h2>A lot of generic stuff</h2>
-					</header>
-					<section>
-						<header>
-							<h3>Paragraph</h3>
-							<p>This is the subtitle for this particular heading</p>
-						</header>
-						<p>Phasellus nisl nisl, varius id <sup>porttitor sed pellentesque</sup> ac orci. Pellentesque
-						habitant <strong>strong</strong> tristique <b>bold</b> et netus <i>italic</i> malesuada <em>emphasized</em> ac turpis egestas. Morbi
-						leo suscipit ut. Praesent <sub>id turpis vitae</sub> turpis pretium ultricies. Vestibulum sit
-						amet risus elit.</p>
-					</section>
-					<section>
-						<header>
-							<h3>Blockquote</h3>
-						</header>
-						<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget.
-						tempus euismod. Vestibulum ante ipsum primis in faucibus.</blockquote>
-					</section>
-					<section>
-						<header>
-							<h3>Divider</h3>
-						</header>
-						<p>Donec consectetur vestibulum dolor et pulvinar. Etiam vel felis enim, at viverra
-						ligula. Ut porttitor sagittis lorem, quis eleifend nisi ornare vel. Praesent nec orci
-						facilisis leo magna. Cras sit amet urna eros, id egestas urna. Quisque aliquam
-						tempus euismod. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-						posuere cubilia.</p>
-						<hr />
-						<p>Donec consectetur vestibulum dolor et pulvinar. Etiam vel felis enim, at viverra
-						ligula. Ut porttitor sagittis lorem, quis eleifend nisi ornare vel. Praesent nec orci
-						facilisis leo magna. Cras sit amet urna eros, id egestas urna. Quisque aliquam
-						tempus euismod. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-						posuere cubilia.</p>
-					</section>
-					<section>
-						<header>
-							<h3>Unordered List</h3>
-						</header>
-						<ul class="default">
-							<li>Donec consectetur vestibulum dolor et pulvinar. Etiam vel felis enim, at viverra ligula. Ut porttitor sagittis lorem, quis eleifend nisi ornare vel.</li>
-							<li>Donec consectetur vestibulum dolor et pulvinar. Etiam vel felis enim, at viverra ligula. Ut porttitor sagittis lorem, quis eleifend nisi ornare vel.</li>
-							<li>Donec consectetur vestibulum dolor et pulvinar. Etiam vel felis enim, at viverra ligula. Ut porttitor sagittis lorem, quis eleifend nisi ornare vel.</li>
-							<li>Donec consectetur vestibulum dolor et pulvinar. Etiam vel felis enim, at viverra ligula. Ut porttitor sagittis lorem, quis eleifend nisi ornare vel.</li>
-						</ul>
-					</section>
-					<section>
-						<header>
-							<h3>Ordered List</h3>
-						</header>
-						<ol class="default">
-							<li>Donec consectetur vestibulum dolor et pulvinar. Etiam vel felis enim, at viverra ligula. Ut porttitor sagittis lorem, quis eleifend nisi ornare vel.</li>
-							<li>Donec consectetur vestibulum dolor et pulvinar. Etiam vel felis enim, at viverra ligula. Ut porttitor sagittis lorem, quis eleifend nisi ornare vel.</li>
-							<li>Donec consectetur vestibulum dolor et pulvinar. Etiam vel felis enim, at viverra ligula. Ut porttitor sagittis lorem, quis eleifend nisi ornare vel.</li>
-							<li>Donec consectetur vestibulum dolor et pulvinar. Etiam vel felis enim, at viverra ligula. Ut porttitor sagittis lorem, quis eleifend nisi ornare vel.</li>
-						</ol>
-					</section>
-					<section>
-						<header>
-							<h3>Table</h3>
-						</header>
-						<div class="table-wrapper">
-							<table class="default">
-								<thead>
-									<tr>
-										<th>ID</th>
-										<th>Name</th>
-										<th>Description</th>
-										<th>Price</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>45815</td>
-										<td>Something</td>
-										<td>Ut porttitor sagittis lorem, quis eleifend nisi ornare vel.</td>
-										<td>29.99</td>
-									</tr>
-									<tr>
-										<td>24524</td>
-										<td>Nothing</td>
-										<td>Ut porttitor sagittis lorem, quis eleifend nisi ornare vel.</td>
-										<td>19.99</td>
-									</tr>
-									<tr>
-										<td>45815</td>
-										<td>Something</td>
-										<td>Ut porttitor sagittis lorem, quis eleifend nisi ornare vel.</td>
-										<td>29.99</td>
-									</tr>
-									<tr>
-										<td>24524</td>
-										<td>Nothing</td>
-										<td>Ut porttitor sagittis lorem, quis eleifend nisi ornare vel.</td>
-										<td>19.99</td>
-									</tr>
-								</tbody>
-								<tfoot>
-									<tr>
-										<td colspan="3"></td>
-										<td>100.00</td>
-									</tr>
-								</tfoot>
-							</table>
-						</div>
-					</section>
-					<section>
-						<header>
-							<h3>Form</h3>
-						</header>
-						<form method="post" action="#">
-							<div class="row">
-								<div class="col-6 col-12-mobilep">
-									<label for="name">Name</label>
-									<input class="text" type="text" name="name" id="name" value="" placeholder="John Doe" />
-								</div>
-								<div class="col-6 col-12-mobilep">
-									<label for="email">Email</label>
-									<input class="text" type="text" name="email" id="email" value="" placeholder="johndoe@domain.tld" />
-								</div>
-								<div class="col-12">
-									<label for="subject">Subject</label>
-									<input class="text" type="text" name="subject" id="subject" value="" placeholder="Enter your subject" />
-								</div>
-								<div class="col-12">
-									<label for="subject">Message</label>
-									<textarea name="message" id="message" placeholder="Enter your message" rows="6"></textarea>
-								</div>
-								<div class="col-12">
-									<ul class="actions special">
-										<li><input type="submit" value="Send" /></li>
-										<li><input type="reset" value="Reset" class="alt" /></li>
-									</ul>
-								</div>
-							</div>
-						</form>
-					</section>
-				</div>
-				-->
-
-				<footer class="major container medium">
-					<h3>Get shady with science</h3>
-					<p>Vitae natoque dictum etiam semper magnis enim feugiat amet curabitur tempor orci penatibus. Tellus erat mauris ipsum fermentum etiam vivamus.</p>
-					<ul class="actions special">
-						<li><a href="#" class="button">Join our crew</a></li>
-					</ul>
-				</footer>
-
 			</div>
-
+				
+		<!-- Footer -->
+		<div id="footer">
+			<div class="container medium">
+				<section>
+					<header>
+						<h2>Contact info</h2>
+					</header>
+					<hr />
+					<section>
+						<h4>Address</h4>
+						<p>Dr. Joaquín Secco Illa 2827</p>
+					</section>
+					<hr />
+					<section>
+						<h4>Phone</h4>
+						<p>(+598) 95 451 306</p>
+					</section>
+					<hr />
+					<section>
+						<h4>Email</h4>
+						<p>tincho.perciante@gmail.com</p>
+					</section>
+				</section>
+				<hr />
+				
+				<ul class="copyright">
+					<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</div>
+		</div>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
