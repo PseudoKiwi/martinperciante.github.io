@@ -26,25 +26,69 @@
 							<h3 style="text-align: left">Introduction</h3>
 						</header>
 						<p style="text-align: justify">
-						
+							When data inputs relate to an outup in a linear way, Linear Algorithms make their appearance.
+							Depending on the problem, different algorithms are available for our use. The most used models are
+							Linear Regression and Logistic Regression. The first one is used to guess the output value given an
+							input, and the second one for binary classification. I will also present the Linear Discriminant
+							Analysis algorithm, used to solve multiple class clasification problems.
 						</p>
 						<header>
 							<h3 style="text-align: left">Linear Regression</h3>
 						</header>
 						<p style="text-align: justify">
-						
+							Linear Regression is a mathematical concept. We have a set of numerical data and we want to find the
+							linear equation which best fits the tendency. Obviously, if the data input has no linear relation with
+							the output, applying this model is nonsense. Sometimes is possible to transform the nonlinear data in
+							some way that the transformed input follows some linear equation and then apply the algorithm. This last
+							part must be done during the data preprocessing stage. This model gives numerical outputs and solves
+							a Regression problem.
+						</p>
+						<p style="text-align: justify">
+							A linear equation depends in two parameters, the slope and the y-axis cut or independent coefficient.
+							One way of estimating this parameters is the Minimum Squares algorithm, which looks for parameters that
+							minimize the Square Error Sum of the input data. Minimum Squares gives an expression for both parameters
+							depending on the input data. Computing both will gives us the searched model. In case there are more than
+							one input, the system of equations is modified , thus the parameter expressions, but the procedure is unchanged.
+							Multiple input Linear Regression is called Multiple Linear Regression. If there are mor than one output,
+							if all of them follow a linear relation, Minimum Squares must be done for every one of them. Having every
+							parameter of the linear model computed, the training is completed and the guessing consists in inserting
+							new inputs and gather the results.
+						</p>
+						<p style="text-align: justify">
+							Some data considerations must be taken to get good results. First of all, linearity is assumed to apply the model.
+							Searching for the best line equation in a nonlinear relation will result in bad predictions. In second place, numerical
+							inputs are needed to compute the numerical values of the equation. In third place, avoiding correlated inputs will help
+							to prevent overfitting. Linear Regression also works good when both input and output are normally distributed. This can
+							be tackled during the data preprocessing stage as well as filtering high correlated inputs.
 						</p>
 						<header>
 							<h3 style="text-align: left">Logistic Regression</h3>
 						</header>
 						<p style="text-align: justify">
-						
+							Logistic Regression is called like that because of the usage of the logistic function. This algorithm is used for binary
+							classification problems. It computes the probability a given input is from the default class (arbitrarily chosen) and
+							makes its prediction. If the probability is near one, then the input belongs to the default class. The closest to zero,
+							the less probable to be from that class, thus it belongs to the other one.
+						</p>
+						<p style="text-align: justify">
+							Logistic Regression may not be a regression algorithm, but it does use Linear Regression to function correctly. The probability
+							of the input being from the default class is given by the logistic function as established before, applyed to a linear
+							combination of the input data. Inputs must be real numbers. The inverse function of the probability is then a linear equation.
+							A linear equation is then found relating de inputs and the natural logarithm of the odds of the input being from the default class.
+							To get the linear coefficients Linear Regression algorithms are used.
+						</p>
+						<p style="text-align: justify">
+							After fitting the line and getting the probability, if well fitted, input values corresponding to one class or another will have
+							close values to one or zero respectively. Though the output is a real number between zero and one, this value is rounded to solve
+							binary classification problems and give a categorical answer. The issue comes when data inputs result in near point five values,
+							where the model can not clearly distinguish which class it belongs. In this cases, a more profound consideration must be made to
+							avoid false predictions.
 						</p>
 						<header>
 							<h3 style="text-align: left">Linear Discriminant Analysis</h3>
 						</header>
 						<p style="text-align: justify">
-						
+							The Linear Discriminant Analysis is a linear algorithm to solve multiple class classification problems.
 						</p>
 
 					</section>
