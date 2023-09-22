@@ -242,6 +242,8 @@ input, select, textarea {
 			}
 
 		}
+	
+	
 
 /* Row */
 
@@ -2480,6 +2482,21 @@ input, select, textarea {
 	table {
 		width: 100%;
 	}
+
+		table.data {
+			width: 20%;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		table.data thead {
+			border-bottom: solid 1px rgba(224, 224, 224, 0.75);
+			text-align: center;
+		}
+
+		table.data tbody {
+			text-align: center;
+		}
 
 		table.default {
 			width: 100%;

@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<!--
+	Directive by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Directive by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Main -->
+			<div id="main">
+
+				<div class="box container">
+					<header> 
+						<h2>Case Study 1: Linear Regression</h2>
+					</header>
+
+					<section>
+						<header>
+							<h3 style="text-align: left">Introduction</h3>
+						</header>
+						<p style="text-align: justify">
+							As we will later see, in Linear Regression we search for the line equation which best fits our data. This is achieved minimizing the cuadratic
+							error sum. Gradient Descent can be applied to minimize this function.
+						</p>
+						<header>
+							<h3 style="text-align: left">Data</h3>
+						</header>
+						<p style="text-align: justify">
+							To apply the algorithm we need our data set. A simple example will be enough.
+						</p>
+						<section>
+							<div class="table-wrapper">
+								<table class="data">
+									<thead>
+										<tr>
+											<th>x</th>
+											<th>y</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td>1</td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>2</td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td>3</td>
+										</tr>
+										<tr>
+											<td>4</td>
+											<td>3</td>
+										</tr>
+										<tr>
+											<td>6</td>
+											<td>2</td>
+										</tr>
+										<tr>
+											<td>5</td>
+											<td>5</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<p>
+								Now that we have all the information needed we can apply the algorithm.
+							</p>
+						</section>
+						<header>
+							<h3 style="text-align: left">Backround</h3>
+						</header>
+						<p style="text-align: justify">
+							It is assumed a linear relation between x and y values. This means two parameters must be adjust, the slope and the independent coefficient.
+							The error of each point is defined as the difference between the y value of the dataset and the prediction of the linear model. Suming the
+							square error for each point, we arrive to the function we want to minimize.
+						</p>
+						<div style="text-align: center;"><img src="images/errorCuadratico.png" width="50%"></div><p style="text-align: justify">
+						<p> style="text-align: justify"
+							Having the function f, what we need is to compute its derivatives with respect to m and b.
+						</p>
+						<div style="text-align: center;"><img src="images/derivadas.png" width="60%"></div><p style="text-align: justify">
+						<p style="text-align: justify">
+							Now we need to define a starting point and a step parameter. For arbitrary purpose, m=b=0 can be chosen as the starting coordinates. A step
+							parameter of 0.01 is proposed at start. Depending on the results obtained, we can play with this parameter to obtain the wanted results.
+						</p>
+						<header>
+							<h3 style="text-align: left">Procedure</h3>
+						</header>
+						<p style="text-align: justify">
+							The algorithm objective is to find the m and b parameters which minimize the function F. This point in the coordinate space will also have
+							a 0 gradient. The procedure then goes like this:
+						</p>
+						<div style="text-align: center;"><img src="images/descenso.png" width="50%"></div><p style="text-align: justify">
+						<p style="text-align: justify">
+							where every new point is computed using the previous one and the derivatives in that point. Repeating this procedure enough time will get us
+							to the minimum of F, unless the step parameter is chosen unwisely.
+						</p>
+						<header>
+							<h3 style="text-align: left">Results</h3>
+						</header>
+						<p style="text-align: justify">
+							First thing to clarify, the 2 factor that appears in the derivatives is absorbed in the step parameter. We can do this because 2 is a constant.
+							With this consideration, repeating the procedure for about 500 times we get values of m and b of:
+						</p>
+						<div style="text-align: center;"><img src="images/resMB.png" width="40%"></div><p style="text-align: justify">
+						<p style="text-align: justify">
+							This values are aproximately equal to the ones obtained by the minimum squares method usually used for Linear Regression. This results are presented
+							in the Linear Regression section of the Portfolio.
+						</p>
+						<p style="text-align: justify">
+							Graphing the function through the iterations, we see that it is constantly decreasing for the step parameter chosen. This is in fact why we chose 0.01
+							at first. The lector is free to play with this parameter to see how changes in this parameter change the behaviour of the algorithm. The graph is presented
+							below this text.
+						</p>
+						<div style="text-align: center;"><img src="images/errorGrafica.png" width="80%"></div><p style="text-align: justify">
+					</section>
+					<h1></h1>
+					<ul class="icons">
+						<li><a href="index.html" class="fas fa-arrow-left"></a></li>
+					</ul>
+				</div>
+			</div>
+				
+		<!-- Footer -->
+		<div id="footer">
+			<div class="container medium">
+				<section>
+					<header>
+						<h2>Contact info</h2>
+					</header>
+					<hr />
+					<section>
+						<h4>Address</h4>
+						<p>Dr. Joaquín Secco Illa 2827</p>
+					</section>
+					<hr />
+					<section>
+						<h4>Phone</h4>
+						<p>(+598) 95 451 306</p>
+					</section>
+					<hr />
+					<section>
+						<h4>Email</h4>
+						<p>tincho.perciante@gmail.com</p>
+					</section>
+				</section>
+				<hr />
+				
+				<ul class="copyright">
+					<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
