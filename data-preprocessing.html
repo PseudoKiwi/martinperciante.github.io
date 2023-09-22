@@ -36,9 +36,19 @@
 							<h3 style="text-align: left">Dataset Inspection</h3>
 						</header>
 						<p style="text-align: justify">
-							First thing to identify are the data types of each input of the dataset. Data types include binomial, polynomial,
-							real, text, and others. Not every algorithm works with every input, so we have to know what we have and make the
-							apropriate transformations if needed.
+							First thing to identify are the input atributes and their data types. Input atributes are the starting point of
+							our journey and we need to know what information we have. The target variable must be identified in this stage.
+							Without knowing what we want to predict we can not do much. Data types include binomial, polynomial, real,
+							text, and others. Not every algorithm works with every input. It is vital to know what we have to know when we 
+							will be able to apply our model. Apropriate transformations can be used over data if needed.
+						</p>
+						<p style="text-align: justify">
+							The amount of examples in the dataset is also a crucial aspect. Without the proper training, predictions made
+							will not be significant. In some cases, small datasets are all we have and some techniques can be applyed to
+							improve our predictions. For example, we can divide the dataset in k different sets. Then, we train k algorithms
+							with k-1 datasets (each one of them lacking a different portion of the data) and the prediction will be the mean
+							of the k results. We can also use sample with replacement instead of dividing into k different datasets. This
+							techniques can also be used in Cross-Validation to estimate small dataset errors in predictions.
 						</p>
 						<p style="text-align: justify">
 							In numeric type atributes, some statistical values may be useful. The mean value of the atribute gives us information
@@ -49,47 +59,74 @@
 						<p style="text-align: justify">
 							Another important aspect to take into account are data distributions. Not every algorithm works fine with every distribution.
 							As I will present in future sections, some algorithms assume the data has a specific distribution. In this cases, mean and
-							standard deviation are also part of the problem.
+							standard deviation are also part of the problem. We also need to be careful with the ammount of examples of each class
+							(in classification problems) the training dataset has. An uneven distribution of examples will surely produce a bias error on
+							the future predictions.
 						</p>
 						<p style="text-align: justify">
-							Finally, we need to be careful with the ammount of examples of each class (in classification problems) the training dataset has.
-							An uneven distribution of examples will surely produce a bias error on the future predictions.
-						</p>
-						<header>
-							<h3 style="text-align: left">Missing Values</h3>
-						</header>
-						<p style="text-align: justify">
-						
-						</p>
-						<header>
-							<h3 style="text-align: left">Out of Range Values</h3>
-						</header>
-						<p style="text-align: justify">
-						
+							Finally, outliers can be identified and treated too. An outlier is an example of the dataset that has abnormal values, or in
+							a more mathematical way, its value is far away from the mean. Outliers can widely modify the statistical parameters and affect
+							predictions. Depending on the problem, outliers must be removed. In some cases, identifying outliers is the algorithm purpose,
+							but in general they will cause more damage than good.
 						</p>
 						<header>
 							<h3 style="text-align: left">Atribute Selection</h3>
 						</header>
 						<p style="text-align: justify">
-						
+							After understanding the problem, decisions must be taken to get the better results out of the dataset. Not every atribute gives
+							us useful information to solve our problem. Atributes that have no relation with the output variable should be removed from the
+							training. We need to be cautious in this step. To remove an atribute we first have to study its relevance. If not careful enough,
+							we can be mislead by our intuition to remove data that was actually relevant to our predictions.
+						</p>
+						<p style="text-align: justify">
+							Correlation between atributes is very important. The correlation between variables is a measurment of how much one of them change
+							when the other does. If an input has near 0 correlation with the output variable, it can be safely removed for the training. However,
+							high correlation between inputs should be avoided. If two input are highly correlated they are giving essentially the same information,
+							causing overfitting in the model. The correlation matrix is an useful tool to see all this information at one place.
+						</p>
+						<header>
+							<h3 style="text-align: left">Missing Values</h3>
+						</header>
+						<p style="text-align: justify">
+							Once we filter the atributes, other considerations must be taken. What can we do when data values are missing? Depends on what we need
+							and how much information we have. Dealing with missing values is necessary because many algorithms will crash if the dataset is incomplete.
+						</p>
+						<p style="text-align: justify">
+							The first solution we can arrive to is deleting the examples with missing atributes. When the amount of examples with missing values of some
+							category is small compared with the total amount of examples, we can safely erradicate them from the dataset. Being a small amount of examples
+							imply that they alone can not modify significantly the statistical parameters, so this is a plausible option. If most of one category values
+							are missing, maybe the best solution is to delete the hole input column because not much information is given about it, so no conclusions can
+							be taken.
+						</p>
+						<p style="text-align: justify">
+							Instead od deleting, we could also imputate some values. Different imputation techniques are used. The mean, maximum or minimum values are
+							usually the ones imputed in the datasets. We should be careful with imputation because we may add a non negligible amount of error in our predictions.
 						</p>
 						<header>
 							<h3 style="text-align: left">Normalization</h3>
 						</header>
 						<p style="text-align: justify">
-						
+							Sometimes we will need inputs to be in the same range of values. Normalization is the process to transform the actual range of values into
+							0 to 1 values. The disadvantage here is that we lose information about the actual values and can only know how near the max or min value our
+							data is. This can also have problems when applying the model, because we need this data to be in the same initial range of values. However, it
+							is a useful tool. The transformation to get the data in this new range is:
+						</p>
+						<div style="text-align: center;"><img src="images/normalizacion.png" width="40%"></div>
+						<p style="text-align: justify">
+							Minimum values will then be 0 and maximum values will be 1.
 						</p>
 						<header>
 							<h3 style="text-align: left">Standarization</h3>
 						</header>
 						<p style="text-align: justify">
-						
+							Standarization is another data transformation. In this case, it produces a 0 mean, 1 standard deviation data distribution. Ideally, this will
+							be enough to transform our data into a gaussian like distribution. However, for this to happen we need a large ammount of thata. Other transformations
+							can be used to achieve this, such as a logarithm transform. The reason for this is because some algorithms assume a normal distribution in data inputs.
+							If we can get the data to be gaussian-like, we will be able to use them. The transformation is like follows:
 						</p>
-						<header>
-							<h3 style="text-align: left">Outliers</h3>
-						</header>
+						<div style="text-align: center;"><img src="images/estandarizacion.png" width="40%"></div>
 						<p style="text-align: justify">
-						
+							This transformation is also known as the z-transformation
 						</p>
 						<header>
 							<h3 style="text-align: left">Compatibility with model</h3>
@@ -98,6 +135,7 @@
 						
 						</p>
 					</section>
+					<h1></h1>
 					<ul class="icons">
 						<li><a href="index.html" class="fas fa-arrow-left"></a></li>
 					</ul>

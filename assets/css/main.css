@@ -3317,3 +3317,11 @@ input, select, textarea {
 				}
 
 	}
+
+	.prueba {
+		display: flex;
+	  }
+	  
+	  .prueba :first-child {
+		margin-right: 10px;
+	  }
