@@ -26,10 +26,49 @@
 							<h3 style="text-align: left">Introduction</h3>
 						</header>
 						<p style="text-align: justify">
-						
+							Raw data contains a lot of information, but not necessarily at plain sight. It is our job to treat the data
+							correctly so we can squeeze out the most of it. However, many problems may arise. Some values may be missing,
+							some datasets can have the same information but in a different scale, data distributions may not be ideal, and
+							many more. This section is commited to talk about all the considerations needed before applying any kind of
+							model to the data.
+						</p>
+						<header>
+							<h3 style="text-align: left">Dataset Inspection</h3>
+						</header>
+						<p style="text-align: justify">
+							First thing to identify are the data types of each input of the dataset. Data types include binomial, polynomial,
+							real, text, and others. Not every algorithm works with every input, so we have to know what we have and make the
+							apropriate transformations if needed.
+						</p>
+						<p style="text-align: justify">
+							In numeric type atributes, some statistical values may be useful. The mean value of the atribute gives us information
+							about the most common value, and its standard deviation about how much we can expect a new value deviates from the mean.
+							The range of values is also important. When working with data its crucial to know the start and end of the possible
+							values so we can take better decisions.
+						</p>
+						<p style="text-align: justify">
+							Another important aspect to take into account are data distributions. Not every algorithm works fine with every distribution.
+							As I will present in future sections, some algorithms assume the data has a specific distribution. In this cases, mean and
+							standard deviation are also part of the problem.
+						</p>
+						<p style="text-align: justify">
+							Finally, we need to be careful with the ammount of examples of each class (in classification problems) the training dataset has.
+							An uneven distribution of examples will surely produce a bias error on the future predictions.
 						</p>
 						<header>
 							<h3 style="text-align: left">Missing Values</h3>
+						</header>
+						<p style="text-align: justify">
+						
+						</p>
+						<header>
+							<h3 style="text-align: left">Out of Range Values</h3>
+						</header>
+						<p style="text-align: justify">
+						
+						</p>
+						<header>
+							<h3 style="text-align: left">Atribute Selection</h3>
 						</header>
 						<p style="text-align: justify">
 						
