@@ -36,7 +36,7 @@
 							<h3 style="text-align: left">Dataset Inspection</h3>
 						</header>
 						<p style="text-align: justify">
-							First thing to identify are the input atributes and their data types. Input atributes are the starting point of
+							First thing to identify are the input attributes and their data types. Input attributes are the starting point of
 							our journey and we need to know what information we have. The target variable must be identified in this stage.
 							Without knowing what we want to predict we can not do much. Data types include binomial, polynomial, real,
 							text, and others. Not every algorithm works with every input. It is vital to know what we have to know when we 
@@ -51,7 +51,7 @@
 							techniques can also be used in Cross-Validation to estimate small dataset errors in predictions.
 						</p>
 						<p style="text-align: justify">
-							In numeric type atributes, some statistical values may be useful. The mean value of the atribute gives us information
+							In numeric type attributes, some statistical values may be useful. The mean value of the attribute gives us information
 							about the most common value, and its standard deviation about how much we can expect a new value deviates from the mean.
 							The range of values is also important. When working with data its crucial to know the start and end of the possible
 							values so we can take better decisions.
@@ -70,16 +70,16 @@
 							but in general they will cause more damage than good.
 						</p>
 						<header>
-							<h3 style="text-align: left">Atribute Selection</h3>
+							<h3 style="text-align: left">attribute Selection</h3>
 						</header>
 						<p style="text-align: justify">
-							After understanding the problem, decisions must be taken to get the better results out of the dataset. Not every atribute gives
-							us useful information to solve our problem. Atributes that have no relation with the output variable should be removed from the
-							training. We need to be cautious in this step. To remove an atribute we first have to study its relevance. If not careful enough,
+							After understanding the problem, decisions must be taken to get the better results out of the dataset. Not every attribute gives
+							us useful information to solve our problem. attributes that have no relation with the output variable should be removed from the
+							training. We need to be cautious in this step. To remove an attribute we first have to study its relevance. If not careful enough,
 							we can be mislead by our intuition to remove data that was actually relevant to our predictions.
 						</p>
 						<p style="text-align: justify">
-							Correlation between atributes is very important. The correlation between variables is a measurment of how much one of them change
+							Correlation between attributes is very important. The correlation between variables is a measurment of how much one of them change
 							when the other does. If an input has near 0 correlation with the output variable, it can be safely removed for the training. However,
 							high correlation between inputs should be avoided. If two input are highly correlated they are giving essentially the same information,
 							causing overfitting in the model. The correlation matrix is an useful tool to see all this information at one place.
@@ -88,11 +88,11 @@
 							<h3 style="text-align: left">Missing Values</h3>
 						</header>
 						<p style="text-align: justify">
-							Once we filter the atributes, other considerations must be taken. What can we do when data values are missing? Depends on what we need
+							Once we filter the attributes, other considerations must be taken. What can we do when data values are missing? Depends on what we need
 							and how much information we have. Dealing with missing values is necessary because many algorithms will crash if the dataset is incomplete.
 						</p>
 						<p style="text-align: justify">
-							The first solution we can arrive to is deleting the examples with missing atributes. When the amount of examples with missing values of some
+							The first solution we can arrive to is deleting the examples with missing attributes. When the amount of examples with missing values of some
 							category is small compared with the total amount of examples, we can safely erradicate them from the dataset. Being a small amount of examples
 							imply that they alone can not modify significantly the statistical parameters, so this is a plausible option. If most of one category values
 							are missing, maybe the best solution is to delete the hole input column because not much information is given about it, so no conclusions can
@@ -133,7 +133,7 @@
 						</header>
 						<p style="text-align: justify">
 							There is a reason why we train algorithms, we want to use them. However, not every dataset may be compatible with the trained model. Every 
-							data consideration mentioned before must be taken again with the new dataset. Atribute ranges and types must be the same. Data distribution
+							data consideration mentioned before must be taken again with the new dataset. attribute ranges and types must be the same. Data distribution
 							should also be at least similar to the training one.
 						</p>
 						<p style="text-align: justify">

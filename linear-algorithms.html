@@ -88,9 +88,25 @@
 							<h3 style="text-align: left">Linear Discriminant Analysis</h3>
 						</header>
 						<p style="text-align: justify">
-							The Linear Discriminant Analysis is a linear algorithm to solve multiple class classification problems.
+							The Linear Discriminant Analysis is a linear algorithm to solve multiple class classification problems. Based on Bayes Theorem and
+							assuming a gaussian like data distribution, it gives a linear function for each input example, used to determine the prediction.
 						</p>
-
+						<div style="text-align: center;"><img src="images/bayesLDA.png"></div>
+						<p style="text-align: justify">
+							The formula presented represents the probability of the class k given an input x. P(k) it is the default probability of the class,
+							computed as the fraction of k examples in the training dataset. Finally, P(x|k) gives the probability of attributes x given class k.
+							What we assume gaussian-like is this last one. Substituting the gaussian distribution in the given formula, the discriminant formula
+							is obtained:
+						</p>
+						<div style="text-align: center;"><img src="images/discriminante.png"></div>
+						<p style="text-align: justify">
+							The discriminant k refers to the discriminant of class k, computed using the mean values of k, the total variance, the k default probability
+							and the x input. In this example, we treat a single input problem. Now we see why this is also a linear model too. To make the prediction,
+							all k discriminants are calculated and the biggest one defines the predicted class k.
+						</p>
+						<header>
+							<h3 style="text-align: left">Case Studies</h3>
+						</header>
 					</section>
 					<h1></h1>
 					<ul class="icons">
