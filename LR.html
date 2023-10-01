@@ -26,9 +26,9 @@
 							<h3 style="text-align: left">Introduction</h3>
 						</header>
 						<p style="text-align: justify">
-							As we will later see, in Linear Regression we search for the line equation which best fits our data. This is achieved minimizing the cuadratic
-							error sum. Gradient Descent can be applied to minimize this function.
-						</p>
+							Linear Regression searches the line which best fits the dataset. Minimum Squares will be used in this example.
+                            The method consists in minimizing the sum of squared errors.
+                        </p>
 						<header>
 							<h3 style="text-align: left">Data</h3>
 						</header>
@@ -72,7 +72,7 @@
 									</tbody>
 								</table>
 							</div>
-							<p>
+							<p style="text-align: justify">
 								Now that we have all the information needed we can apply the algorithm.
 							</p>
 						</section>
@@ -85,48 +85,36 @@
 							square error for each point, we arrive to the function we want to minimize.
 						</p>
 						<div style="text-align: center;"><img src="images/errorCuadratico.png" width="50%"></div><p style="text-align: justify">
-						<p style="text-align: justify">
+						<p>
 							Having the function F, what we need is to compute its derivatives with respect to m and b.
 						</p>
 						<div style="text-align: center;"><img src="images/derivadas.png" width="60%"></div><p style="text-align: justify">
 						<p style="text-align: justify">
-							Now we need to define a starting point and a step parameter. For arbitrary purpose, m=b=0 can be chosen as the starting coordinates. A step
-							parameter of 0.01 is proposed at start. Depending on the results obtained, we can play with this parameter to obtain the wanted results.
-						</p>
+                            Finding m and b values which minimizes F, implies solving the linear sistem of equations resultant of equaling F derivatives to 0.
+							This results in the formulas presented:
+                        </p>
+                        <div style="text-align: center;"><img src="images/solMC.png" width="50%"></div><p style="text-align: justify">
 						<header>
 							<h3 style="text-align: left">Procedure</h3>
 						</header>
 						<p style="text-align: justify">
-							The algorithm objective is to find the m and b parameters which minimize the function F. This point in the coordinate space will also have
-							a 0 gradient. The procedure then goes like this:
-						</p>
-						<div style="text-align: center;"><img src="images/descenso.png" width="50%"></div><p style="text-align: justify">
-						<p style="text-align: justify">
-							where every new point is computed using the previous one and the derivatives in that point. Repeating this procedure enough time will get us
-							to the minimum of F, unless the step parameter is chosen unwisely.
-						</p>
+							Procedure in this case consists only on applying the formula with our dataset.
+                        </p>
 						<header>
 							<h3 style="text-align: left">Results</h3>
 						</header>
-						<p style="text-align: justify">
-							First thing to clarify, the 2 factor that appears in the derivatives is absorbed in the step parameter. We can do this because 2 is a constant.
-							With this consideration, repeating the procedure for about 500 times we get values of m and b of:
+                        <p style="text-align: justify">
+							Inputing our data in the formulas, the following values are given.
 						</p>
-						<div style="text-align: center;"><img src="images/resMB.png" width="40%"></div><p style="text-align: justify">
+						<div style="text-align: center;"><img src="images/resMBminimos.png" width="50%"></div><p style="text-align: justify">
 						<p style="text-align: justify">
-							This values are aproximately equal to the ones obtained by the minimum squares method usually used for Linear Regression. This results are presented
-							in the Linear Regression section of the Portfolio.
+							Graphing both the dataset and the data predictions over the input, we get the following graph:
 						</p>
-						<p style="text-align: justify">
-							Graphing the function through the iterations, we see that it is constantly decreasing for the step parameter chosen. This is in fact why we chose 0.01
-							at first. The lector is free to play with this parameter to see how changes in this parameter change the behaviour of the algorithm. The graph is presented
-							below this text.
-						</p>
-						<div style="text-align: center;"><img src="images/errorGrafica.png" width="80%"></div><p style="text-align: justify">
+						<div style="text-align: center;"><img src="images/predictionMC.png" width="80%"></div><p style="text-align: justify">
 					</section>
 					<h1></h1>
 					<ul class="icons">
-						<li><a href="optimization.html" class="fas fa-arrow-left"></a></li>
+						<li><a href="linear-algorithms.html" class="fas fa-arrow-left"></a></li>
 					</ul>
 				</div>
 			</div>
