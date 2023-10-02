@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<!--
+	Directive by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Directive by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Main -->
+			<div id="main">
+
+				<div class="box container">
+					<header> 
+						<h2>Case Study 1: Titanic survival</h2>
+					</header>
+
+					<section>
+						<header>
+							<h3 style="text-align: left">Introduction</h3>
+						</header>
+						<p style="text-align: justify">
+							The Titanic survival dataset is a very used example for beginners. Here we will study the dataset
+                            as established before using the RapidMiner software. The objective of the dataset is to predict if
+                            a person will or will not have survived the Titanic incident, being the binary class Survived our
+                            objective variable.
+                        </p>
+						<header>
+							<h3 style="text-align: left">Data Inspection</h3>
+						</header>
+						<p style="text-align: justify">
+							First of all, we need to know what we are dealing with. Data types, ranges, averages, deviations,
+                            distributions. Running the Retrieve operator alone results in the unmodified dataset as an output,
+                            perfect for us to inspect.
+                        </p>
+						<div style="text-align: center;"><img src="images/RM1.png" width="100%"></div>
+						<p style="text-align: justify">
+							In the RapidMiner Results window, in the statistics option, we can see all the data statistical
+                            information. Histograms are plotted showing the distributions, ranges, averages and deviations of
+                            numerical data are computed, categorical values are shown, etc.
+                        </p>
+                        <p style="text-align: justify">
+							Just by visualizing the dataset, we know there are 1309 examples total. The Cabin attribute alone
+                            has 1014 values missing, almost 78% of the data examples. Other attribute also present missing values,
+                            such as Age with 263, Life Boat with 823, Passenger Fare with 1, etc. This values need to be handle
+                            before training any model.
+                        </p>
+                        <div style="text-align: center;"><img src="images/RM2.png" width="100%"></div>
+                        <header>
+							<h3 style="text-align: left">Attribute Selection and Examples Filtering</h3>
+						</header>
+                        <p style="text-align: justify">
+                            First of all, attributes Cabin and Life Boat present more than 50% of missing examples. This implies
+                            that the information given by this attribute can cause serius bias in the model, if used like this or
+                            with artificial data. Because of this, the better option is to completly vanish the attribute before
+                            training. This can be done with the Select Attributes Rapid Miner operator, selecting the subset of
+                            attributes to ignore.
+                        </p>
+                        <p style="text-align: justify">
+                            Age attribute presents a lot of missing values too, but not in a significant way as the attributes
+                            discused before. Further, this time we need to handle a numeric attribute. 263 examples are still a
+                            lot to delete, but we can impute the average value of ages. This way we mantain the examples for Further
+                            use. This can be done with the Replace Missing Values operator, setted with average imputation.
+                        </p>
+                        <p style="text-align: justify">
+                            Finally, we still have some examples to deal with. However, the attributes they lack have only 1 or 2
+                            total missing values. Because the dataset has about 1300 examples, filtering some of them wont cause any
+                            damage. With the Filter Examples operator we can get rid of the remaining missing values. The resultant
+                            chain of RapidMiner operators is now presented.
+                        </p>
+                        <div style="text-align: center;"><img src="images/RM3.png" width="100%"></div>
+                        <header>
+							<h3 style="text-align: left">Conclusion</h3>
+						</header>
+                        <p style="text-align: justify">
+                            Some work may be yet to be done, but we arrived to a more useful dataset  with very basic operations.
+                            After this manipulation, every classification algorithm can be used to predict the target variable.
+                            Some extra step may be to apply data transformations (depending on the chosen algorithm) and some Feature
+                            Selection techniques to lower the dimensions of the problem, but we still obtained a decent dataset to
+                            work with.
+                        </p>
+				    </section>
+					<h1></h1>
+					<ul class="icons">
+						<li><a href="data-preprocessing.html" class="fas fa-arrow-left"></a></li>
+					</ul>
+				</div>
+			</div>
+				
+		<!-- Footer -->
+		<div id="footer">
+			<div class="container medium">
+				<section>
+					<header>
+						<h2>Contact info</h2>
+					</header>
+					<hr />
+					<section>
+						<h4>Address</h4>
+						<p>Dr. Joaquín Secco Illa 2827</p>
+					</section>
+					<hr />
+					<section>
+						<h4>Phone</h4>
+						<p>(+598) 95 451 306</p>
+					</section>
+					<hr />
+					<section>
+						<h4>Email</h4>
+						<p>tincho.perciante@gmail.com</p>
+					</section>
+				</section>
+				<hr />
+				
+				<ul class="copyright">
+					<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
