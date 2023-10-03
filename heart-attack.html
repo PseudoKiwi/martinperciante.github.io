@@ -1,0 +1,274 @@
+<!DOCTYPE HTML>
+<!--
+	Directive by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Directive by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Main -->
+			<div id="main">
+
+				<div class="box container">
+					<header> 
+						<h2>Second Heart Attack</h2>
+					</header>
+
+					<section>
+						<header>
+							<h3 style="text-align: left">Introduction</h3>
+						</header>
+						<p style="text-align: justify">
+                            A doctor is interested in predicting if a patient who previously had a heart attack, will or will not
+                            have a second one. This way, he can prevent the patient of it with proper treatment.
+                        </p>
+						<header>
+							<h3 style="text-align: left">Data</h3>
+						</header>
+                            The training and scoring datasets can be downloaded from here.
+						<p style="text-align: center">
+                            <a href="datasets/cardiac-training.csv">cardiac-training</a>	
+                        </p>
+                        <p style="text-align: center">
+                            <a href="datasets/cardiac-scoring.csv">cardiac-scoring</a>
+                        </p>
+                        <p>
+                            The datasets contain information about the age, marital status, sex, weight category, cholesterol,
+                            whether or not the subject has attended to stress management courses and finally stress level.
+                        </p>
+						</section>
+						<header>
+							<h3 style="text-align: left">Procedure</h3>
+						</header>
+						<p style="text-align: justify">
+                            First of all, libraries should be imported. We need pandas to read the csv datasets and sklearn to
+                            train and apply the Logistic Regression model. Other sklearn imports will be done to simplify cross
+                            validation and analysis.
+                        </p>
+                        <pre>
+							<code>
+import pandas as pd
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import confusion_matrix, classification_report
+from sklearn.model_selection import train_test_split
+							</code>
+						</pre>
+                        <p style="text-align: justify">
+                            Now we can read the data to see what we have. Pandas read_csv() function will do the job. We can then
+                            print de columns to see the attribute names.
+                        </p>
+                        <pre>
+							<code>
+df = pd.read_csv("cardiac-training.csv", header=0)
+print(df.columns)
+                            </code>
+						</pre>
+                        <p style="text-align: justify"> The following information will be printed in console</p>
+                        <pre>
+							<code>
+Index(['Edad', 'Estado_civil', 'Sexo', 'Categoria_Peso', 'Colesterol',
+'Manejo_stress', 'Trat_ansiedad', '2do_Ataque_Corazon'],
+dtype='object')
+                            </code>
+						</pre>
+                        <p style="text-align: justify">
+                            The label here is "2do_Ataque_Corazon", corresponding whether or not those patient have had a second heart
+                            attack. Seeing the attributes, they all appear important, so we would not get rid of any of them.
+                        </p>
+                        <p style="text-align: justify">
+                            Before using the scoring dataset, we want to be assured the model works. This can be done with cross validation,
+                            dividing the training dataset in smaller datasets, one for training and one for testing. When predicting if someone
+                            will have a second heart attack, surely the label will be missing, so we can not make performance studies with new
+                            data, but yes with the training dataset. Dataset will be divided 70-30 randomly.
+                        </p>
+                        <pre>
+							<code>
+X = df.loc[:,df.columns != '2do_Ataque_Corazon']
+y = df['2do_Ataque_Corazon'].values
+train_X, test_X, train_y, test_y = train_test_split(X, y, test_size=0.30,
+                                                random_state=0, shuffle=True)
+                            </code>
+						</pre>
+                        <p style="text-align: justify">
+                            Now, we have to train and apply the model.
+                        </p>
+                        <pre>
+							<code>
+lr = LogisticRegression()
+lr.fit(train_X, train_y)
+
+y_pred = lr.predict(test_X)
+							</code>
+						</pre>
+                        <p style="text-align: justify">
+                            Printing the Classification Report and Confusion Matrix will give us the information about the performance we are
+                            searching for.
+                        </p>
+                        <pre>
+							<code>
+print(classification_report(test_y, y_pred, digits=3))
+print(confusion_matrix(test_y, y_pred))
+							</code>
+						</pre>
+                        <pre>
+							<code>
+             precision    recall  f1-score   support
+
+          No      0.941     0.842     0.889        19
+          Si      0.880     0.957     0.917        23
+
+    accuracy                          0.905        42
+   macro avg      0.911     0.899     0.903        42
+weighted avg      0.908     0.905     0.904        42
+
+[[16  3]
+[ 1 22]]
+							</code>
+						</pre>
+                        <p style="text-align: justify">
+                            We see there have been a total of 4 mispredictions in the model. This can vary depending in the values the random sample
+                            takes.
+                        </p>
+						<header>
+							<h3 style="text-align: left">Results</h3>
+						</header>
+						<p style="text-align: justify">
+							Knowing the model works, we can now apply it to the scoring data. A pretty similar code is implemented for this.
+                        </p>
+                        <pre>
+							<code>
+import pandas as pd
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import confusion_matrix, classification_report
+from sklearn.model_selection import train_test_split
+
+input_file = "cardiac-training.csv"
+df = pd.read_csv(input_file, header=0)
+input_file_scoring = "cardiac-scoring.csv"
+df_scoring = pd.read_csv(input_file_scoring, header=0)
+
+X = df.loc[:, df.columns != '2do_Ataque_Corazon']
+y = df['2do_Ataque_Corazon'].values
+
+lr = LogisticRegression()
+lr = lr.fit(X, y)
+
+X_scoring = df_scoring.loc[:]
+y_pred = lr.predict(X_scoring)
+							</code>
+						</pre>
+                        <p>
+                            Our predictions have been made. It is our job now given the inputs to analyze if the predictions make sense. Taje por example
+                            the 11th example. The prediction given its a yes. He is an overweight, third age person with high cholesterol and high stress levels.
+                            In conclusion, this yes prediction seems to be accurate. The predictions made are presented now:
+                        </p>
+                        <pre>
+							<code>
+Predicted
+['No' 'Si' 'No' 'Si' 'No' 'No' 'No' 'No' 'Si' 'No' 'Si' 'No' 'Si' 'Si'
+'No' 'Si' 'Si' 'No' 'No' 'Si' 'No' 'Si' 'No' 'Si' 'No' 'Si' 'Si' 'Si'
+'Si' 'No' 'Si' 'No' 'No' 'No' 'No' 'Si' 'Si' 'No' 'Si' 'No' 'No' 'No'
+'No' 'Si' 'No' 'No' 'No' 'No' 'Si' 'No' 'No' 'No' 'No' 'Si' 'Si' 'Si'
+'No' 'Si' 'Si' 'No' 'No' 'No' 'Si' 'Si' 'No' 'Si' 'Si' 'No' 'Si' 'No'
+'No' 'No' 'Si' 'No' 'No' 'Si' 'No' 'No' 'No' 'Si' 'Si' 'No' 'No' 'Si'
+'No' 'Si' 'Si' 'No' 'Si' 'Si' 'Si' 'No' 'No' 'No' 'No' 'No' 'No' 'No'
+'No' 'No' 'No' 'Si' 'No' 'Si' 'Si' 'Si' 'No' 'Si' 'No' 'No' 'Si' 'Si'
+'No' 'Si' 'No' 'Si' 'Si' 'No' 'Si' 'No' 'No' 'No' 'No' 'Si' 'Si' 'No'
+'Si' 'Si' 'Si' 'No' 'No' 'No' 'No' 'Si' 'No' 'No' 'Si' 'Si' 'Si' 'Si'
+'Si' 'Si' 'Si' 'No' 'Si' 'No' 'No' 'No' 'No' 'No' 'No' 'No' 'Si' 'Si'
+'No' 'Si' 'Si' 'No' 'Si' 'Si' 'Si' 'No' 'No' 'Si' 'No' 'No' 'Si' 'Si'
+'No' 'Si' 'Si' 'No' 'No' 'No' 'No' 'No' 'No' 'No' 'Si' 'Si' 'Si' 'Si'
+'No' 'Si' 'Si' 'No' 'Si' 'Si' 'Si' 'Si' 'Si' 'No' 'No' 'No' 'Si' 'No'
+'Si' 'Si' 'No' 'No' 'No' 'No' 'Si' 'No' 'No' 'Si' 'No' 'No' 'No' 'No'
+'Si' 'Si' 'Si' 'No' 'No' 'No' 'No' 'Si' 'Si' 'Si' 'No' 'Si' 'No' 'Si'
+'No' 'Si' 'Si' 'No' 'No' 'No' 'No' 'Si' 'No' 'Si' 'Si' 'Si' 'No' 'No'
+'Si' 'Si' 'No' 'No' 'No' 'Si' 'Si' 'No' 'Si' 'Si' 'No' 'No' 'No' 'Si'
+'Si' 'Si' 'Si' 'Si' 'No' 'No' 'Si' 'No' 'Si' 'Si' 'No' 'Si' 'Si' 'Si'
+'Si' 'No' 'Si' 'Si' 'Si' 'Si' 'Si' 'No' 'Si' 'Si' 'Si' 'No' 'No' 'No'
+'Si' 'No' 'No' 'Si' 'Si' 'No' 'No' 'No' 'No' 'Si' 'No' 'Si' 'Si' 'Si'
+'Si' 'No' 'Si' 'Si' 'Si' 'Si' 'Si' 'No' 'Si' 'No' 'No' 'Si' 'Si' 'Si'
+'Si' 'Si' 'No' 'Si' 'No' 'No' 'No' 'Si' 'Si' 'Si' 'No' 'Si' 'No' 'Si'
+'No' 'No' 'No' 'No' 'Si' 'No' 'Si' 'Si' 'Si' 'No' 'No' 'No' 'Si' 'No'
+'Si' 'Si' 'No' 'No' 'Si' 'No' 'No' 'No' 'No' 'Si' 'Si' 'Si' 'No' 'Si'
+'No' 'No' 'Si' 'Si' 'Si' 'No' 'Si' 'No' 'Si' 'No' 'No' 'No' 'No' 'No'
+'Si' 'No' 'Si' 'No' 'Si' 'No' 'Si' 'No' 'No' 'No' 'No' 'Si' 'Si' 'Si'
+'No' 'Si' 'No' 'Si' 'Si' 'No' 'No' 'No' 'No' 'Si' 'Si' 'Si' 'No' 'Si'
+'Si' 'Si' 'Si' 'No' 'No' 'No' 'Si' 'Si' 'No' 'Si' 'Si' 'No' 'No' 'No'
+'No' 'Si' 'Si' 'No' 'No' 'Si' 'Si' 'Si' 'Si' 'No' 'Si' 'No' 'Si' 'Si'
+'Si' 'No' 'No' 'No' 'Si' 'No' 'Si' 'Si' 'Si' 'Si' 'No' 'No' 'Si' 'No'
+'No' 'Si' 'No' 'No' 'No' 'No' 'Si' 'Si' 'No' 'No' 'No' 'No' 'Si' 'No'
+'No' 'No' 'No' 'Si' 'No' 'Si' 'Si' 'Si' 'No' 'No' 'Si' 'Si' 'Si' 'No'
+'Si' 'Si' 'Si' 'No' 'No' 'No' 'Si' 'No' 'No' 'No' 'No' 'Si' 'Si' 'No'
+'Si' 'No' 'No' 'No' 'No' 'Si' 'Si' 'No' 'Si' 'Si' 'Si' 'No' 'Si' 'No'
+'Si' 'Si' 'No' 'Si' 'Si' 'Si' 'No' 'No' 'No' 'Si' 'No' 'Si' 'No' 'Si'
+'Si' 'No' 'No' 'No' 'Si' 'Si' 'No' 'Si' 'No' 'No' 'No' 'Si' 'Si' 'No'
+'Si' 'Si' 'Si' 'Si' 'Si' 'Si' 'Si' 'No' 'Si' 'No' 'Si' 'No' 'No' 'No'
+'No' 'No' 'Si' 'Si' 'Si' 'No' 'No' 'No' 'No' 'No' 'Si' 'No' 'No' 'No'
+'Si' 'Si' 'Si' 'No' 'No' 'Si' 'Si' 'Si' 'Si' 'No' 'No' 'Si' 'Si' 'No'
+'No' 'No' 'Si' 'No' 'Si' 'Si' 'Si' 'Si' 'No' 'No' 'Si' 'No' 'No' 'No'
+'Si' 'Si' 'No' 'No' 'No' 'Si' 'Si' 'Si' 'No' 'Si' 'Si' 'Si' 'Si' 'Si'
+'Si' 'Si' 'Si' 'No' 'Si' 'No' 'Si' 'Si' 'Si' 'No' 'No' 'No' 'Si' 'No'
+'No' 'No' 'Si' 'No' 'Si' 'Si' 'No' 'Si' 'Si' 'Si' 'Si' 'No' 'No' 'Si'
+'No' 'Si' 'No' 'Si' 'Si' 'No' 'No' 'No' 'No' 'No' 'No' 'No' 'No' 'No'
+'Si' 'No' 'Si' 'No' 'Si' 'No' 'Si' 'Si' 'No' 'No' 'No' 'Si' 'Si' 'No'
+'Si' 'Si' 'Si' 'No' 'No' 'Si' 'No' 'No' 'No' 'No' 'No' 'No' 'No' 'No'
+'No' 'Si' 'Si' 'No' 'No' 'No' 'Si' 'No' 'No' 'Si' 'No' 'Si' 'Si' 'No'
+'No' 'Si' 'Si' 'Si' 'Si' 'No' 'No' 'No' 'Si' 'No' 'Si' 'No' 'No' 'Si'
+'Si' 'No' 'No' 'Si']
+							</code>
+						</pre>
+						</section>
+					<h1></h1>
+					<ul class="icons">
+						<li><a href="applying-algorithms.html" class="fas fa-arrow-left"></a></li>
+					</ul>
+				</div>
+			</div>
+				
+		<!-- Footer -->
+		<div id="footer">
+			<div class="container medium">
+				<section>
+					<header>
+						<h2>Contact info</h2>
+					</header>
+					<hr />
+					<section>
+						<h4>Address</h4>
+						<p>Dr. Joaquín Secco Illa 2827</p>
+					</section>
+					<hr />
+					<section>
+						<h4>Phone</h4>
+						<p>(+598) 95 451 306</p>
+					</section>
+					<hr />
+					<section>
+						<h4>Email</h4>
+						<p>tincho.perciante@gmail.com</p>
+					</section>
+				</section>
+				<hr />
+				
+				<ul class="copyright">
+					<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
