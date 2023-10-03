@@ -3325,3 +3325,19 @@ input, select, textarea {
 	  .prueba :first-child {
 		margin-right: 10px;
 	  }
+	
+	  pre {
+		font-family: monospace;
+		white-space-collapse: preserve;
+		text-wrap: nowrap;
+	}
+	
+	pre code {
+		background: rgba(144, 144, 144, 0.075);
+		border-radius: 4px;
+		border: solid 1px #c9c9c9;
+		font-size: 0.9em;
+		padding: 0.25em 0.65em;
+		border: 1px solid #999;
+		display: block;
+		}

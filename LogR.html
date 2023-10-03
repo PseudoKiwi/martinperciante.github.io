@@ -28,6 +28,7 @@
 						<p style="text-align: justify">
 							Binary classification problems can be solved with a Logistic Regression approach. That is the objective
 							of this subsection, starting from the dataset, train a Logistic Regression model and study its predictions.
+							Python sklearn library will be used here.
 						</p>
 						<header>
 							<h3 style="text-align: left">Data</h3>
@@ -35,48 +36,45 @@
 						<p style="text-align: justify">
 							The following dataset is utilized for de analysis
 						</p>
-						<div style="text-align: center;"><img src="images/data_BC.png"></div>
+						<div style="text-align: center;"><img src="images/LogRdata.png"></div>
 						<p style="text-align: justify">
 							Values are graphed by index, where y-axis denotes the input value and the class is specified in its color. A clear separation between both classes
-							is observed. To apply the model we need to transform the data, obtain the linear coeficients using Linear Regression, to finally use the antitransformed
-							model to predict the output.
+							is observed. To apply the model we need to compute the linear coeficients first. This will be automatically done with the sklearn library.
 						</p>
-						<div style="text-align: center;"><img src="images/binaryClassification.png"></div>
-						<section>
-							
-						</section>
-						<header>
-							<h3 style="text-align: left">Backround</h3>
-						</header>
-						<p style="text-align: justify">
-							
-						</p>
-						<p style="text-align: justify"> 
-							
-						</p>
-						<p style="text-align: justify">
-							
-						</p>
+						<div style="text-align: center;"><img src="images/LogRdataI.png" width="70%"></div>
 						<header>
 							<h3 style="text-align: left">Procedure</h3>
 						</header>
 						<p style="text-align: justify">
-							
+							The Python code is the following:
 						</p>
-						<p style="text-align: justify">
-							
-						</p>
+						<pre>
+							<code>
+from sklearn.linear_model import LogisticRegression
+
+input = [[2.7811,2.5505], [1.4655,2.3621], [3.3966,4.4003], [1.3881,1.8502],
+	[3.0641,3.0053], [7.6276,2.7593], [5.3324,2.0886], [6.9226,1.7711],
+	[8.6754,-0.2421], [7.6738,3.5086]]
+output = [0,0,0,0,0,1,1,1,1,1]
+
+lr = LogisticRegression()
+lr.fit(input, output)
+
+lr.predict(input)
+							</code>
+						</pre>
 						<header>
 							<h3 style="text-align: left">Results</h3>
 						</header>
 						<p style="text-align: justify">
-							
+							As we can see, in this case, the Logistic Regression gave a 100% accuracy
+							tested over the input data. We usually should not test the algorithm with all
+							the data input examples, but in this case I only want to show that the code
+							works.
 						</p>
-						<p style="text-align: justify">
-							
-						</p>
-						<p style="text-align: justify">
-							
+						<div style="text-align: center;"><img src="images/LogRres.png" ></div>
+						<p>
+							Now that we have the model trained, we could apply it to other data.
 						</p>
 					</section>
 					<h1></h1>
