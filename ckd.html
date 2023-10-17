@@ -1,0 +1,218 @@
+<!DOCTYPE HTML>
+<!--
+	Directive by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Directive by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Main -->
+			<div id="main">
+
+				<div class="box container">
+					<header> 
+						<h2>Chronic Kidney Disease</h2>
+					</header>
+
+					<section>
+						<header>
+							<h3 style="text-align: left">Introduction</h3>
+						</header>
+						<p style="text-align: justify">
+							Chronic kidney diseases involve loss of the body's kidney functions. This has very
+							negative consequences on the body, and can become fatal without proper treatment.
+							The problem with these diseases is that in the early stages the symptoms are not very
+							noticeable or specific. In addition, the diagnosis of this type of disease is usually
+							invasive, costly and even risky, which is why patients do not visit a doctor in these
+							cases, especially in low-income countries.
+						</p>
+						<p style="text-align: justify">
+							Early detection of this type of disease would be beneficial to individuals on both the
+							health and economic sides. The treatment of chronic renal failure is usually more expensive
+							than coronary artery bypass surgery. Therefore, it is extremely important to be able to
+							predict whether or not these will occur. Some diseases that can cause kidney failure are
+							diabetes, hypertension, swelling in the face, loss of appetite, anemia, urinary discomfort,
+							among others.
+						</p>
+						<p style="text-align: justify">
+							The aim is to solve a binary classification problem from the dataset provided, where the
+							objective variable is whether the person will have kidney failure in the future. As the dataset
+							provides these values for the dataset examples, it is a case of supervised learning.
+						</p>
+						<header>
+							<h3 style="text-align: left">Data</h3>
+						</header>
+                        <p style="text-align: justify">
+							The dataset used and the information about it can be downloaded from here.
+						</p>
+						<p style="text-align: center">
+                            <a href="datasets/chronic_kidney_disease.csv">dataset</a>	
+                        </p>
+                        <p style="text-align: center">
+                            <a href="datasets/chronic_kidney_disease.info.txt">dataset information</a>
+                        </p>
+						<header>
+							<h3 style="text-align: left">Data Analysis</h3>
+						</header>
+						<p style="text-align: justify">
+							The target variable of the problem is the class variable with attributes cdk and notcdk. It is
+							a binary variable. The predictors of the dataset refer to whether the person has some diseases 
+							such as diabetes or hypertension and anemia, we have the age of the person and various medical 
+							data such as blood pressure, potassium, hemoglobin, sodium, among others.
+						</p>
+						<p style="text-align: justify">
+							Disease attributes are binary nominal attributes that specify whether or not the person has the 
+							disease, specified as yes or no. Appetite is specified as good or poor. Appetite is specified as 
+							good or poor. Others, such as pcc, say present or notpresent, just as pc indicates whether the 
+							level is normal or abnormal. The attributes sg, al and su are nominal with values specified in 
+							the dataset information. The rest of the attributes are numeric.
+						</p>
+						<div style="text-align: center;"><img src="images/ckd_someValues.png" width="50%"></div>
+						<p style="text-align: justify">
+							Below are the ranges, means, variances and distributions of all the data in the dataset. It is 
+							observed that the dataset is not balanced, it has 250 cases of cdk and 150 examples of notcdk, 
+							where there are missing values that must be managed. In total we have 400 examples in the dataset.
+						</p>
+						<div style="text-align: center;"><img src="images/ckd_data1.png" width="100%"></div>
+						<div style="text-align: center;"><img src="images/ckd_data2.png" width="100%"></div>
+						<div style="text-align: center;"><img src="images/ckd_data3.png" width="100%"></div>
+						<div style="text-align: center;"><img src="images/ckd_data4.png" width="100%"></div>
+						<div style="text-align: center;"><img src="images/ckd_data5.png" width="100%"></div>
+						<p style="text-align: justify">
+							It is observed how the data distributions, for the most part, are skewed to the right or left. This 
+							in some cases can be accommodated with some transformation to avoid skewing the data. It is also 
+							noted that in potassium and sodium we have examples that appear to be outliers because they are 
+							excessively far from the majority of the data. These should be removed from the dataset so that 
+							they do not influence the predictions. Bias is also observed in the binary attributes.
+						</p>
+						<header>
+							<h3 style="text-align: left">Data Preparation</h3>
+						</header>
+						<p style="text-align: justify">
+							Prior to performing transformations, we observed that there are attributes with missing values. Attributes 
+							rbcc and rcb have more than 30% of missing data. Therefore, I decided to eliminate the entire attributes. 
+							For the rest of the numerical attributes with missing values, the average values of the distributions are 
+							imputed. Then, I filter outliers from the distributions. I do it in this order because the number of examples 
+							is considerably larger than the number of outliers, so they do not affect the imputed value as much. The 
+							distributions with apparent outliers are bp, sc, pot and wbcc.
+						</p>
+						<p style="text-align: justify">
+							Watching data distributions, the filters applyed to get rid of the outliers are shown below:
+						</p>
+						<div style="text-align: center;"><img src="images/ckd_filter.png" width="100%"></div>
+						<p style="text-align: justify">
+							After filtering outliers, we applied transformations to some attributes. To the attributes bgr, bu and 
+							sc we apply a logarithmic transformation to remove skewness from the distribution. The second filter is
+							merely to remove the remaining examples with missing values. Numeric data is also standarize for it to 
+							have a more gaussian-like distribution. After these operations, we apply the Naive Bayes model with a 
+							Backward Elimination. Finally, we apply the model.
+						</p>
+						<div style="text-align: center;"><img src="images/ckd_process.png" width="100%"></div>
+						<p>
+							Inside the Cross Validation operator inside the Backward Elimination, the next process is executed:
+						</p>
+						<div style="text-align: center;"><img src="images/ckd_process_inside.png" width="100%"></div>
+						<header>
+							<h3 style="text-align: left">Chosen Algorithm</h3>
+						</header>
+						<p style="text-align: justify">
+							Naive Bayes assumes that the attributes are conditionally independent, and in this case, all indications 
+							are that they are. A good indication that this is an appropriate algorithm is also that most attributes 
+							are categorical. Numerical attributes with non-Gaussian distributions can be discretized or converted to 
+							nominals to solve this problem, but since there are fewer of them, there are not many such problems. After
+							the transformations, the mayority of numerical attribute has a gaussian-like distribution, making this model
+							ideal.
+						</p>
+						<header>
+							<h3 style="text-align: left">Results</h3>
+						</header>
+						<p style="text-align: justify">
+							We can see that with the operations performed, the Cross Validations within the Backward Elimination gives 
+							us the confusion and precision matrix, the latter being 100%. sod and bu were the only attributes discarded
+							by the Backward Elimination process.
+						</p>
+						<div style="text-align: center;"><img src="images/ckd_cMatrix.png" width="100%"></div>
+						<header>
+							<h3 style="text-align: left">Comparing models performance</h3>
+						</header>
+						<p style="text-align: justify">
+							Here I compare the performance of other possible classification models. The idea is to see how good they
+							perform and if our first election was the best.
+						</p>
+						<p style="text-align: justify">
+							For the same operator configuration, the Logistic Regression model gives the following results:
+						</p>
+						<div style="text-align: center;"><img src="images/ckd_cMatrixLR.png" width="100%"></div>
+						<p style="text-align: justify">
+							sod, al and su attributes were discarded.
+						</p>
+						<p style="text-align: justify">
+							Changing the standarization for a normalization in ranges for numeric attributes, K-NN results in:
+						</p>
+						<div style="text-align: center;"><img src="images/ckd_cMatrixKNN.png" width="100%"></div>
+						<p style="text-align: justify">
+							sc and pc attributes were discarded.
+						</p>
+						<header>
+							<h3 style="text-align: left">Conclusions</h3>
+						</header>
+						<p style="text-align: justify">
+							Naive Bayes gave the best accuracy results of them three, with a 100% of correct predictions. Nevertheless,
+							all three algorithms gave over 98% in prediction accuracy, so all presented models would have been a good
+							choice here. The only thing to do now is to start predicting new data when needed.
+						</p>
+                    </section>
+					<h1></h1>
+					<ul class="icons">
+						<li><a href="case-studies.html" class="fas fa-arrow-left"></a></li>
+					</ul>
+				</div>
+			</div>
+				
+		<!-- Footer -->
+		<div id="footer">
+			<div class="container medium">
+				<section>
+					<header>
+						<h2>Contact info</h2>
+					</header>
+					<hr />
+					<section>
+						<h4>Address</h4>
+						<p>Dr. Joaquín Secco Illa 2827</p>
+					</section>
+					<hr />
+					<section>
+						<h4>Phone</h4>
+						<p>(+598) 95 451 306</p>
+					</section>
+					<hr />
+					<section>
+						<h4>Email</h4>
+						<p>tincho.perciante@gmail.com</p>
+					</section>
+				</section>
+				<hr />
+				
+				<ul class="copyright">
+					<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

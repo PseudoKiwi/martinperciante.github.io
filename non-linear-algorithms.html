@@ -33,51 +33,22 @@
 							<h3 style="text-align: left">K-NN</h3>
 						</header>
 						<p style="text-align: justify">
-							K-Nearest Neighbours is an algorithm based in distances calculated in an M-dimesion space where M is the amount of
+							K-Nearest Neighbours is an algorithm based in distances calculated in an M-dimesional space where M is the amount of
 							attributes available. To apply the model, a proximity function and a parameter K must be defined. The proximity function
 							is used to measure the relationship between points in our mathematical space, and K is the number of closest neighbours
-							needed to take a decision.
+							needed to take a decision. The class prediction made over an example will be the class with maximum presence in the
+							example subset containing the k most near neighbours using the proximity function elected.
                         </p>
-						<p style="text-align: justify">
-							When a point must be classified, the K nearest examples of the training dataset are retrieved using the proximity function
-							defined. Once we have the neighbours, the amount of each possible class between neighbours is computed. The class with most
-							presence wins and that is the final prediction. When K=1, the label of the nearest point will be the prediction of the example.
-						</p>
-						<p style="text-align: justify">
-							We established how the algorithm works, but proximity is yet to be defined. The first approach to this is the mathematical
-							distance between points in the M-dimensional space. The problem here resides in attribute ranges and units. To improve
-							predictions, data can be normalized to have a fair comparison between them. An extra improvement can be done. After identifying
-							the K neighbours, weights can be assigned based on distance. By doing this, closer neighbours will have more importance
-							and quantity wont be the only consideration.
-						</p>
-						<p style="text-align: justify">
-							Other proximity concepts can be used. Correlation between points is the first alternative approach. When all attributes are
-							binary, matching coefficients should be enough. This method counts how many of the total attributes are equal between both points.
-							Finally, the cosine similarity computes the cosine between the vectors defined by the points.
-						</p>
 						<header>
 							<h3 style="text-align: left">Naive Bayes</h3>
 						</header>
 						<p style="text-align: justify">
 							This algorithm roots in probability and statistic methods. More specifically, in Bayes Theorem. It computes the probability of
-							being from class Y having attributes x using the probability of x given class Y, being x the vector of independent attributes.
-							Under this contition, probability can be expressed as:
-						</p>
-						<div style="text-align: center;"><img src="images/bayes.png"></div>
-						<p>
-							Class Y with the biggest P(Y|x) will be the prediction. Because P(x) is the same constant for every Y, this does not need to be
-							calculated. P(Y) and each P(x|Y) can be obtained from the dataset. P(Y) is the fraction of Y examples in the dataset. Because of
-							this, dataset size and amount of example must be representative of the population. P(x|Y) is analogous. For each attribute xi,
-							we calculate the fraction of examples for each class.
-						</p>
-						<p>
-							Knowing all probabilities, we just need to find the Y class which maximizes P(Y|x). Dividing the results by the sum of every
-							possible P(Y|x), we get a percentage for each class. The Y with greatest percentage wins. When having continuous numeric values,
-							probability densities may be used. An advantage of bayesian modeling is the missing value resistance. Problem arises when attributes
-							do not provide examples for some categories. However, attribute should be independent for it to work correctly.
-						</p>
+							being from class Y having attributes x using the probability of x given class Y, being x the vector of attributes. It is assumed
+							conditional independence for the algorithm, and polynomial inputs must be used. If not, gaussian distributions will be assumed.
+							Class Y with the biggest P(Y|x) will be the prediction.
 						<header>
-							<h3 style="text-align: left">Case Studies</h3>
+							<h3 style="text-align: left">Applying models</h3>
 						</header>
 					</section>
 					<h1></h1>

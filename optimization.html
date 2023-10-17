@@ -36,41 +36,18 @@
 						<p style="text-align: justify">
 							The Gradient Descent algorithm makes use of some mathematical properties of functions to minimize them. The gradient operator applied to a
 							scalar function gives us information about its direction of greatest growth. Given a starting point, we can periodicly move in the coordinate
-							space contrary to that direction until, with some tolerance, we find a minimum value.
+							space contrary to that direction until, with some tolerance, we find a minimum value. To apply it, we need a cost function to minimize and a
+							step parameter to pace the movement. Having defined both things, we are ready to go.
 						</p>
-						<p style="text-align: justify">
-							Some problems arise from this approach. It can happen that the minimum we found its far from what we are looking for. Relative minimums are
-							also minimums and we need a way to avoid them. Consequently, the use of a new parameter is proposed. This parameter regulates the step length and
-							must be a real, positive value. With a large enough step parameter, relative minimums are easier to dodge, but a convergence problem arises. Big
-							steps prevents the algorithm to found a suitable set of candidate coordinates, failing its porpouse. Another problem are saddle points, where the
-							function has null gradient but its not a minimum nor maximum. Having the step parameter well defined, the only thing to worry about now is the starting
-							point. Choosing a random sart will make it difficult to converge in a saddle point.
-						</p>
-						<p style="text-align: justify">
-							In conclusion, the starting point and value of the step parameter are crucial for the correct functioning of our algorithm, but how can we apply it?
-							To calculate the next values of the coordinates we need a starting point (as mentioned before), the value of the step parameter and the gradient
-							of the function. Having this, the new values will be computed as the actual values minus the step parameter times the gradient evaluated in the actual
-							coordinates. The problem with this implementation cames with big datasets, because we first compute all the next values and then apply the transformation.
-						</p>
+						
 						<header>
-							<h3 style="text-align: left">Other variants</h3>
-						</header>
-						<p style="text-align: justify">
-							Different implementations of this method were developed through the years. Before I discussed about an implementation with a fixed value for the
-							step parameter. Some algorithms use a dinamic step parameter, calculating its value for each iteration, so convergence is achieved faster and better.
-						</p>
-						<p style="text-align: justify">
-							Another change is the Stochastic Gradient Descent. In this case, the transformation of coordinates is not applied to all at once, but to one random
-							one at a time. This is an advantage to the first case when treating big datasets.	
-						</p>
-						<header>
-							<h3 style="text-align: left">Case Studies</h3>
+							<h3 style="text-align: left">Applying models</h3>
 						</header>
 						<section>
 							<div class="feature left">
 								<a href="GDLR.html" class="image icon fa-circle"><img src="images/pic01.jpg" alt="Snow" style="width:66%;"></a>
 								<div style="text-align: center" class="content">
-								<h3>Case Study 1</h3>
+								<h3>Applying Standard Gradient Descent</h3>
 								<p>Standard Gradient Descent applied to a Linear Regression problem.</p>
 							</div>
 						</section>
