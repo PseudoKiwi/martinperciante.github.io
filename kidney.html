@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<!--
+	Solid State by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>CKD Prediction</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+      charset="UTF-8"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript
+      ><link rel="stylesheet" href="assets/css/noscript.css"
+    /></noscript>
+    <link rel="icon" href="images/icon.webp" type="image/x-icon" />
+  </head>
+  <body
+    class="is-preload"
+    style="
+      background-image: linear-gradient(
+          to top,
+          rgba(46, 49, 65, 0.8),
+          rgba(46, 49, 65, 0.8)
+        ),
+        url(images/rm/bigney.jpg);
+    "
+  >
+    <!-- Page Wrapper -->
+    <div id="page-wrapper">
+      <!-- Header -->
+      <header id="header">
+        <h1>Martin Perciante</h1>
+        <nav>
+          <a href="#menu">Menú</a>
+        </nav>
+      </header>
+
+      <!-- Menu -->
+      <nav id="menu">
+        <div class="inner">
+          <h2>Menú</h2>
+          <ul class="links">
+            <li><a href="index.html">Inicio</a></li>
+            <li>
+              <a href="kidney.html"
+                >Prediciendo la Enfermedad Crónica de Riñón</a
+              >
+            </li>
+            <li>
+              <a href="supervivientes_titanic.html"
+                >Prediciendo Supervivientes de Titanic</a
+              >
+            </li>
+            <li>
+              <a href="heart-attack.html"
+                >Prediciendo Un Segundo Ataque al Corazón</a
+              >
+            </li>
+            <li>
+              <a href="iris_arboles_decision.html"
+                >Árboles de Decisión Para Clasificación de Iris Setosa</a
+              >
+            </li>
+          </ul>
+          <a href="#" class="close">Close</a>
+        </div>
+      </nav>
+
+      <!-- Wrapper -->
+      <section id="wrapper">
+        <header id="kidney-header">
+          <div class="inner">
+            <h2>Prediciendo la enfermedad crónica de riñón</h2>
+          </div>
+        </header>
+
+        <!-- Content -->
+        <div class="wrapper">
+          <div class="inner">
+            <section>
+              <h3 class="major">El problema</h3>
+              <p>
+                Muchas personas lidian con enfermedades renales a nivel global.
+                Estas pueden manifestarse de repente debido a diversos factores
+                de riesgo, como lo que comen, su entorno y su forma de vida. La
+                detección de estas enfermedades puede ser invasiva, costosa y
+                lenta. Incluso puede ser arriesgada. Por esta razón,
+                especialmente en lugares con recursos limitados, muchos
+                pacientes no son diagnosticados ni tratados hasta que su
+                enfermedad renal ya está avanzada. Por lo tanto, encontrar
+                formas de detectar estas enfermedades temprano es realmente
+                importante, especialmente en países en desarrollo donde el
+                diagnóstico tardío es común.
+              </p>
+
+              <h3 class="major">Los datos</h3>
+              <p>
+                Existen muchos conjuntos de datos que contienen información de
+                pacientes con esta enfermedad que se pueden utilizar para lograr
+                nuestro objetivo de predecir la enfermedad renal crónica. En
+                este caso, vamos a utilizar el conjunto de datos proporcionado
+                por el repositorio de UCI. Al analizar la descripción del
+                conjunto de datos y los datos en sí, podemos definir los tipos y
+                roles de los atributos:
+              </p>
+            </section>
+
+            <section>
+              <h3 class="major">Información del dataset</h3>
+              <div class="table-wrapper">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Abbreviation</th>
+                      <th>UCI Description</th>
+                      <th>Observed type</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Age</td>
+                      <td>age</td>
+                      <td>Numerical</td>
+                      <td>Integer</td>
+                    </tr>
+                    <tr>
+                      <td>Blood Pressure</td>
+                      <td>bp</td>
+                      <td>Numerical</td>
+                      <td>Real (in mm/Hg)</td>
+                    </tr>
+                    <tr>
+                      <td>Specific Gravity</td>
+                      <td>sg</td>
+                      <td>Nominal</td>
+                      <td>Polynomial (1.005, 1.010, 1.015, 1.020, 1.025)</td>
+                    </tr>
+                    <tr>
+                      <td>Albumin</td>
+                      <td>al</td>
+                      <td>Nominal</td>
+                      <td>Polynomial (0, 1, 2, 3, 4, 5)</td>
+                    </tr>
+                    <tr>
+                      <td>Sugar</td>
+                      <td>su</td>
+                      <td>Nominal</td>
+                      <td>Polynomial (0, 1, 2, 3, 4, 5)</td>
+                    </tr>
+                    <tr>
+                      <td>Red Blood Cells</td>
+                      <td>rbc</td>
+                      <td>Nominal</td>
+                      <td>Binary (normal, abnormal)</td>
+                    </tr>
+                    <tr>
+                      <td>Pus Cell</td>
+                      <td>pc</td>
+                      <td>Nominal</td>
+                      <td>Binary (normal, abnormal)</td>
+                    </tr>
+                    <tr>
+                      <td>Pus Cell Clumps</td>
+                      <td>pcc</td>
+                      <td>Nominal</td>
+                      <td>Binary (present, notpresent)</td>
+                    </tr>
+                    <tr>
+                      <td>Bacteria</td>
+                      <td>ba</td>
+                      <td>Nominal</td>
+                      <td>Binary (present, notpresent)</td>
+                    </tr>
+                    <tr>
+                      <td>Blood Glucose Random</td>
+                      <td>bgr</td>
+                      <td>Numerical</td>
+                      <td>Real (bgr in mgs/dl)</td>
+                    </tr>
+                    <tr>
+                      <td>Blood Urea</td>
+                      <td>bu</td>
+                      <td>Numerical</td>
+                      <td>Real (bu in mgs/dl)</td>
+                    </tr>
+                    <tr>
+                      <td>Serum Creatinine</td>
+                      <td>sc</td>
+                      <td>Numerical</td>
+                      <td>Real (sc in mgs/dl)</td>
+                    </tr>
+                    <tr>
+                      <td>Sodium</td>
+                      <td>sod</td>
+                      <td>Numerical</td>
+                      <td>Real (sod in mEq/L)</td>
+                    </tr>
+                    <tr>
+                      <td>Potassium</td>
+                      <td>pot</td>
+                      <td>Numerical</td>
+                      <td>Real (pot in mEq/L)</td>
+                    </tr>
+                    <tr>
+                      <td>Hemoglobin</td>
+                      <td>hemo</td>
+                      <td>Numerical</td>
+                      <td>Real (hemo in gms)</td>
+                    </tr>
+                    <tr>
+                      <td>Packed Cell Volume</td>
+                      <td>pcv</td>
+                      <td>Numerical</td>
+                      <td>Real</td>
+                    </tr>
+                    <tr>
+                      <td>White Blood Cell Count</td>
+                      <td>wc</td>
+                      <td>Numerical</td>
+                      <td>Real (wc in cells/cumm)</td>
+                    </tr>
+                    <tr>
+                      <td>Red Blood Cell Count</td>
+                      <td>rc</td>
+                      <td>Numerical</td>
+                      <td>Real (rc in millions/cmm)</td>
+                    </tr>
+                    <tr>
+                      <td>Hypertension</td>
+                      <td>htn</td>
+                      <td>Nominal</td>
+                      <td>Binary (yes, no)</td>
+                    </tr>
+                    <tr>
+                      <td>Diabetes Mellitus</td>
+                      <td>dm</td>
+                      <td>Nominal</td>
+                      <td>Binary (yes, no)</td>
+                    </tr>
+                    <tr>
+                      <td>Coronary Artery Disease</td>
+                      <td>cad</td>
+                      <td>Nominal</td>
+                      <td>Binary (yes, no)</td>
+                    </tr>
+                    <tr>
+                      <td>Appetite</td>
+                      <td>appet</td>
+                      <td>Nominal</td>
+                      <td>Binary (good, poor)</td>
+                    </tr>
+                    <tr>
+                      <td>Pedal Edema</td>
+                      <td>pe</td>
+                      <td>Nominal</td>
+                      <td>Binary (yes, no)</td>
+                    </tr>
+                    <tr>
+                      <td>Anemia</td>
+                      <td>ane</td>
+                      <td>Nominal</td>
+                      <td>Binary (yes, no)</td>
+                    </tr>
+                    <tr>
+                      <td>Class</td>
+                      <td>class</td>
+                      <td>Nominal</td>
+                      <td>Binary, and label (ckd, notckd)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+            <section>
+              <h3 class="major">Importando la información</h3>
+              <p>
+                Al importar los datos, notamos que es necesario modificar los
+                tipos de varios atributos ya que RapidMiner no hizo un buen
+                trabajo de forma automática.
+              </p>
+              <div class="col-12">
+                <span class="image fit"
+                  ><img src="images/rm/upload.png" alt=""
+                /></span>
+              </div>
+              <p>
+                Observamos que la mayoría de los atributos se reconocen como
+                'polinómicos', aunque solo unos pocos deberían serlo. Editamos
+                todos los atributos, asignando los tipos definidos en la tabla
+                anterior. Eliminamos filas que puedan causar problemas (por
+                ejemplo, una fila contiene 'no' en la columna 'clase', podría
+                interpretarse como 'nockd', pero como es un solo valor y no
+                estamos seguros, eliminarlo no causará problemas). Finalmente,
+                renombramos los atributos para hacer que sus nombres sean más
+                descriptivos y fáciles de trabajar.
+              </p>
+            </section>
+            <section>
+              <h3 class="major">Statistics</h3>
+              <p>
+                Una vez que la información fue cargada en RM, podemos estudiarla
+                analizando las siguientes estadísticas:
+              </p>
+              <div class="col-12">
+                <span class="image fit"
+                  ><img src="images/rm/stats1.png" alt=""
+                /></span>
+              </div>
+              <div class="col-12">
+                <span class="image fit"
+                  ><img src="images/rm/stats2.png" alt=""
+                /></span>
+              </div>
+              <div class="col-12">
+                <span class="image fit"
+                  ><img src="images/rm/stats3.png" alt=""
+                /></span>
+              </div>
+              <div class="col-12">
+                <span class="image fit"
+                  ><img src="images/rm/stats4.png" alt=""
+                /></span>
+              </div>
+              <div class="col-12">
+                <span class="image fit"
+                  ><img src="images/rm/stats5.png" alt=""
+                /></span>
+              </div>
+              <p>
+                A partir de las estadisticas realizamos las siguientes
+                observaciones:
+              </p>
+              <ul>
+                <li>
+                  Es un conjunto de datos con muchos valores faltantes en varios
+                  atributos.
+                </li>
+                <li>El atributo 'clase' está bastante equilibrado.</li>
+                <li>
+                  La columna 'potasio' contiene 2 valores atípicos: asumimos que
+                  se omitió un punto decimal en la entrada, ya que los valores
+                  47 y 39 tendrían más sentido si fueran 4.7 y 3.9.
+                  <ul>
+                    <li>
+                      Editamos estos datos en el conjunto de datos y volvemos a
+                      ejecutar las estadísticas.
+                    </li>
+                    <div class="box alt">
+                      <div class="row gtr-uniform">
+                        <div class="col-4">
+                          <span class="image fit"
+                            ><img src="images/rm/prepot.png" alt="" />
+                            <p><i>Antes</i></p></span
+                          >
+                        </div>
+                        <li class="icon solid fa-arrow-right"></li>
+                        <div class="col-4">
+                          <span class="image fit"
+                            ><img src="images/rm/pot.png" alt="" />
+                            <p><i>Después</i></p></span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </ul>
+                </li>
+                <li>
+                  La columna 'sodio' contiene otro valor atípico con un valor de
+                  4.5 (los valores oscilan entre 100 y 163).
+                  <ul>
+                    <li>
+                      Dado que hay muchos valores faltantes (87) para esta
+                      columna, simplemente eliminamos este valor y al volver a
+                      ejecutar las estadísticas, podemos ver las siguientes
+                      mejoras:
+                    </li>
+                    <div class="box alt">
+                      <div class="row gtr-uniform">
+                        <div class="col-4">
+                          <span class="image fit"
+                            ><img src="images/rm/presalt.png" alt="" />
+                            <p><i>Antes</i></p></span
+                          >
+                        </div>
+                        <li class="icon solid fa-arrow-right"></li>
+                        <div class="col-4">
+                          <span class="image fit"
+                            ><img src="images/rm/salt.png" alt="" />
+                            <p><i>Después</i></p></span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </ul>
+                </li>
+                <li>
+                  Observamos en las estadísticas iniciales que algunos atributos
+                  están fuertemente desequilibrados. Esto se puede mejorar
+                  utilizando funciones logarítmicas o exponenciales para
+                  equilibrar los datos y mejorar los resultados.
+                  <ul>
+                    <li>Blood pressure</li>
+                    <li>Albumin</li>
+                    <li>Sugar</li>
+                    <li>Blood glucose random</li>
+                    <li>Blood urea</li>
+                  </ul>
+                </li>
+                <li>
+                  Hemos observado que los niveles de Serum creatinine parecen
+                  estar significativamente desequilibrados. Tras un examen más
+                  detenido de los datos, hemos identificado valores como 76, 32
+                  y 24 mg/dl, que son considerablemente elevados para una
+                  persona típica. Una breve investigación indica que los valores
+                  normales suelen oscilar entre 0.7 y 1.3 mg/dl,
+                  significativamente más bajos que los valores que han levantado
+                  sospechas. Sin embargo, es importante tener en cuenta que
+                  estos valores podrían atribuirse a un paciente enfermo, lo que
+                  los hace potencialmente válidos. Como resultado, hemos
+                  decidido mantener estos valores en su forma actual. No
+                  obstante, permaneceremos vigilantes con respecto a su posible
+                  impacto en el futuro y realizaremos una investigación más
+                  exhaustiva para determinar si deben ser clasificados como
+                  valores atípicos.
+                </li>
+              </ul>
+            </section>
+            <section>
+              <h3 class="major">Lidiando con valores faltantes</h3>
+              <p>
+                Al examinar las estadísticas, notamos una presencia sustancial
+                de valores faltantes. Abordar este problema ofrece varias
+                alternativas. Podemos optar por sustituirlos por promedios o
+                datos derivados de manera lógica, eliminar por completo las
+                filas que contienen valores faltantes, o emplear métodos de
+                aprendizaje automático para predecir los valores faltantes en
+                función de los datos disponibles.
+              </p>
+              <p>
+                Sin embargo, es esencial ser cauteloso con estas técnicas, ya
+                que podrían introducir datos inexactos en el sistema,
+                potencialmente comprometiendo o deteriorando el resultado final.
+                Además, algunos algoritmos son capaces de manejar valores
+                faltantes. Por lo tanto, en nuestra versión inicial,
+                trabajaremos con los valores faltantes en su estado actual. Si
+                identificamos margen de mejora, podemos explorar estas técnicas
+                en una etapa posterior.
+              </p>
+            </section>
+            <section>
+              <h3 class="major">Estudiando atributos correlacionados</h3>
+              <p>
+                Una vez en RapidMiner, podemos utilizar rápidamente el operador
+                de la <i>matriz de correlación</i> para obtener más información
+                sobre estos atributos.
+              </p>
+              <div class="col-12">
+                <span class="image fit"
+                  ><img src="images/rm/correla.png" alt=""
+                /></span>
+              </div>
+              <p>
+                A simple vista, no encontramos atributos altamente
+                correlacionados. La mayor correlación se encuentra entre el
+                atributo <b>clase</b> con <b>hemoglobina</b>,
+                <b>volumen de glóbulos rojos</b> y
+                <b>conteo de glóbulos rojos</b>. Sin embargo, el valor de
+                correlación no supera 0.77, por lo que por el momento lo
+                dejaremos tal como está.
+              </p>
+            </section>
+            <section>
+              <h3 class="major">Modelado</h3>
+              <p>
+                Ahora viene la parte divertida. Comenzaremos a procesar los
+                datos con algunos modelos de aprendizaje automático para
+                averiguar si podemos predecir el valor objetivo. Dado que vamos
+                a intentar clasificar nuevos datos entrantes en dos posibles
+                resultados, <i>ckd</i> y <i>notckd</i>, podemos identificar
+                claramente esto como un problema de clasificación. Por lo tanto,
+                haremos uso de modelos de clasificación.
+              </p>
+              <p>
+                Algunos modelos de clasificacion que podemos utilizar son
+                <b>Logistic regression</b>, <b>Linear discriminant analysis</b>,
+                <b>KNN</b> y <b>Naive bayes</b>
+              </p>
+              <h4 class="major">Validación</h4>
+              <p>
+                Para evaluar el rendimiento de los modelos, emplearemos el
+                operador de <b>Cross validaion</b> de RM, utilizando una
+                estrategia de 5 divisiones. La validación cruzada implica
+                dividir el conjunto de datos en cinco subconjuntos, y el modelo
+                se entrena y valida cinco veces. Cada subconjunto se utiliza
+                como conjunto de validación exactamente una vez, garantizando
+                una evaluación exhaustiva. Este enfoque no solo utiliza todos
+                los datos disponibles, sino que también prueba la capacidad del
+                modelo para generalizar a datos no vistos, lo que lo convierte
+                en un método de validación sólido.
+              </p>
+              <h4 class="major">Feature selection</h4>
+              <p>
+                Podemos observar que hay muchas características con información
+                aquí. Algunas de estas características pueden no ser útiles y
+                podrían impactar negativamente no solo en el rendimiento en
+                términos de eficiencia, sino también en el resultado en sí.
+              </p>
+              <p>
+                Para analizar estas características en busca de las más útiles,
+                podemos emplear diversas técnicas. Sin embargo, optaremos por el
+                operador de RM llamado <b>Optimize selection (evolutionary)</b>.
+                Este operador repite esencialmente todo el proceso varias veces,
+                seleccionando diferentes atributos en cada iteración y evaluando
+                su rendimiento. En última instancia, este operador nos ayudará a
+                identificar las características más útiles, lo que resultará en
+                un mejor rendimiento. Cabe destacar que elegimos 'evolutiva'
+                porque es la opción más probable para evitar llegar a un máximo
+                local.
+              </p>
+              <h3 class="major">Logistic regression</h3>
+              <p>
+                Vamos a trabajar con el primer algoritmo, logistic regression.
+                Lo conectamos al operador de validación cruzada y presionamos
+                "play".
+              </p>
+              <div class="col-12">
+                <span class="image fit"
+                  ><img src="images/rm/lrpro2.png" alt=""
+                /></span>
+              </div>
+              <div class="col-12">
+                <span class="image fit"
+                  ><img src="images/rm/lrpro.png" alt=""
+                /></span>
+              </div>
+              <p>
+                Luego de que termina de procesar los datos, observamos los
+                resultados:
+              </p>
+              <div class="col-12">
+                <span class="image fit"
+                  ><img src="images/rm/lrresults.png" alt=""
+                /></span>
+              </div>
+              <h3>100%! 🤯</h3>
+              <p>
+                Parece un poco demasiado bueno para ser verdad, ¿no? Puede haber
+                problemas con los datos que conducen a un resultado tan bueno
+                pero que resulta ser falso. Por otro lado, observamos que el
+                operador <b>Optimize selection</b> aumentó el rendimiento del
+                98% al 100%. Aunque este resultado puede ser engañoso,
+                continuaremos trabajando con otros modelos para ver cómo se
+                desempeñan. Es importante ser crítico con los resultados y
+                considerar posibles problemas en los datos o en el proceso de
+                modelado.
+              </p>
+            </section>
+            <section>
+              <h3 class="major">Linear discriminant analysis</h3>
+              <p>
+                LDA no admite trabajar con valores faltantes, pero de todos
+                modos vamos a intentarlo llenando los datos con valores
+                promedio. Esto no es una buena idea porque implica información
+                inventada, pero lo probaremos de todos modos para ver cómo se
+                desempeña. Además, LDA no admite atributos binomiales o
+                polinomiales. Para resolver esto, utilizaremos el operador
+                <b>Nominal to numerical</b>, que transformará los valores de
+                atributos binomiales y polinomiales en valores numéricos.
+              </p>
+              <div class="col-12">
+                <span class="image fit"
+                  ><img src="images/rm/ldapre.png" alt=""
+                /></span>
+              </div>
+              <div class="col-12">
+                <span class="image fit"
+                  ><img src="images/rm/ldacross.png" alt=""
+                /></span>
+              </div>
+              <p>
+                Luego de que termina de procesar los datos, observamos los
+                resultados:
+              </p>
+              <div class="col-12">
+                <span class="image fit"
+                  ><img src="images/rm/ldaresults.png" alt=""
+                /></span>
+              </div>
+              <h3>96.48% 😎</h3>
+              <p>
+                No está mal para tener tantos valores inventados. Jugando con
+                los operadores, descubrimos que al dejar fuera las filas con
+                valores faltantes (muchas filas), la precisión fue del 61%, y al
+                autocompletar los valores faltantes, la precisión subió al 90%.
+                Esto se debe probablemente a la escasa cantidad de ejemplos en
+                el conjunto de datos que tienen todos los atributos completos.
+                También notamos que el operador
+                <b>Optimizar Selección</b> aumentó el rendimiento del 90% al
+                96%. Claramente, este operador es muy efectivo. Es importante
+                tener en cuenta cómo los diferentes enfoques para manejar los
+                valores faltantes y la selección de atributos pueden influir en
+                el rendimiento del modelo.
+              </p>
+            </section>
+            <section>
+              <h3 class="major">KNN</h3>
+              <p>
+                KNN o k-nearest neighbours es un algoritmo computacionalmente
+                costoso, pero dado que no estaremos trabajando con un conjunto
+                de datos muy grande, lo probaremos para ver cómo se desempeña.
+                Este algoritmo puede ser útil para problemas de clasificación,
+                pero es importante tener en cuenta su costo computacional y
+                considerar si es adecuado para el tamaño de nuestro conjunto de
+                datos.
+              </p>
+              <div class="col-12">
+                <span class="image fit"
+                  ><img src="images/rm/knnconf.png" alt=""
+                /></span>
+              </div>
+              <p>
+                Luego de que termina de procesar los datos, observamos los
+                resultados:
+              </p>
+              <div class="col-12">
+                <span class="image fit"
+                  ><img src="images/rm/knnper.png" alt=""
+                /></span>
+              </div>
+              <h3>98.99% 😱</h3>
+              <p>
+                ¡Excelente rendimiento! Lo logramos después de ajustar algunos
+                parámetros del operador KNN y realizar un preprocesamiento de
+                datos. Ejecutarlo en la primera instancia resultó en un
+                rendimiento del 61%. Después implementamos el operador
+                <b>Normalizar</b>, que normalizó cada atributo. Esto es
+                especialmente útil para KNN y mejoró su rendimiento al 91%.
+                Luego ajustamos el parámetro <b>k</b> del operador KNN y
+                descubrimos que los valores alrededor de "25" resultaron ser los
+                más eficientes, mejorando el rendimiento al 95.49%. Por último,
+                utilizamos el confiable operador <b>Optmize selection</b>,
+                alcanzando el resultado mostrado, casi un 99%🚀. Es evidente
+                cómo el ajuste de parámetros y la selección de atributos pueden
+                impactar significativamente en el rendimiento de un modelo.
+              </p>
+            </section>
+            <section>
+              <h3 class="major">Naive Bayes</h3>
+              <p>
+                Este algoritmo asume la independencia de los atributos y puede
+                no funcionar bien con atributos altamente correlacionados. Sin
+                embargo, como vimos anteriormente, no hay atributos altamente
+                correlacionados, por lo que le daremos una oportunidad y veremos
+                cómo se desempeña:
+              </p>
+              <div class="col-12">
+                <span class="image fit"
+                  ><img src="images/rm/naiveconf.png" alt=""
+                /></span>
+              </div>
+              <p>
+                Luego de que termina de procesar los datos, observamos los
+                resultados:
+              </p>
+              <div class="col-12">
+                <span class="image fit"
+                  ><img src="images/rm/naiveper.png" alt=""
+                /></span>
+              </div>
+              <h3>100% 🤑</h3>
+              <p>
+                Una vez más, un rendimiento sorprendente. Y el operador
+                <b>Optimize selection</b> hizo su trabajo una vez más, llevando
+                una eficiencia que ya era óptima al 100%. Es impresionante cómo
+                este operador puede mejorar el rendimiento incluso en modelos
+                que ya son altamente eficientes.
+              </p>
+            </section>
+            <section>
+              <h2 class="major">Conclusiones</h2>
+              <p>
+                Todas estas eficiencias parecen demasiado buenas para ser
+                verdad, lo cual puede ser inquietante. Sin embargo, después de
+                reflexionar durante un tiempo sobre las posibles razones por las
+                que podría funcionar "demasiado bien", no logramos encontrar
+                otra explicación mas que: Realmente funciona!.
+              </p>
+              <p>
+                A pesar de todo, gracias al operador de
+                <b>cross validation</b>, los modelos no deberían estar sufriendo
+                de sobreajuste, lo que podría ser una razón para tener un
+                rendimiento tan alto. Para continuar trabajando en esto, el
+                mejor enfoque para validar aún más los modelos sería utilizar
+                otro conjunto de datos que sea muy similar y ya esté
+                clasificado, y probar las eficiencias para ver si realmente
+                funcionan tan bien como muestran.
+              </p>
+              <p>
+                Por último, el MVP ("jugador mas valioso") de este caso de
+                estudio será el operador
+                <b>Optimize selection</b>, que optimizó cada modelo, tanto desde
+                el punto de vista de la eficiencia de recursos como en el
+                rendimiento general de todos ellos. 🥳
+              </p>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <section id="footer">
+        <div class="inner">
+          <ul class="copyright">
+            <li>Diseño: <a href="http://html5up.net">HTML5 UP</a></li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
